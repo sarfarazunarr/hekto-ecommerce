@@ -1,4 +1,6 @@
+import Companies from '@/components/Companies'
 import MainHeader from '@/components/MainHeader'
+import PRDesignSimple from '@/components/mini/PRDesignSimple'
 import Image from 'next/image'
 import React from 'react'
 import { BiLeftArrow } from 'react-icons/bi'
@@ -61,35 +63,45 @@ const ProductDetail = () => {
                 </div>
                 <div className='py-5'>
                     <h2 className='text-2xl text-[#0D134E] font-semibold font-josefin-sans py-3'>Lorem, ipsum.</h2>
-                    <p className='text-[#A9ACC6] font-normal'>Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor ornare faucibus vel sed et eleifend habitasse amet. Montes, mauris varius ac est bibendum. Scelerisque a, risus ac ante. Velit consectetur neque, elit, aliquet. Non varius proin sed urna, egestas consequat laoreet diam tincidunt. Magna eget faucibus cras justo, tortor sed donec tempus. Imperdiet consequat, quis diam arcu, nulla lobortis justo netus dis. Eu in fringilla vulputate nunc nec. Dui, massa viverr .</p>
+                    <p className='text-gray-600 font-normal'>Aliquam dis vulputate vulputate integer sagittis. Faucibus dolor ornare faucibus vel sed et eleifend habitasse amet. Montes, mauris varius ac est bibendum. Scelerisque a, risus ac ante. Velit consectetur neque, elit, aliquet. Non varius proin sed urna, egestas consequat laoreet diam tincidunt. Magna eget faucibus cras justo, tortor sed donec tempus. Imperdiet consequat, quis diam arcu, nulla lobortis justo netus dis. </p>
                     <h2 className='text-2xl text-[#0D134E] font-semibold font-josefin-sans py-3'>More Details</h2>
                     <div className='flex justify-start items-center gap-2'>
-                        <BiLeftArrow size={10} className='text-gray-700 hover:text-navyBlue' />
-                        <p>Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla lobortis justo netus dis. Eu in fringilla vulputate nunc nec. Dui, massa viverr .</p>
+                        <FaArrowRight size={16}  className='text-gray-700 hover:text-navyBlue' />
+                        <p className="text-gray-500">Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla lobortis justo netus dis. </p>
                     </div>
                     <div className='flex justify-start items-center gap-2'>
-                        <BiLeftArrow size={10} className='text-gray-700 hover:text-navyBlue' />
-                        <p>Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla lobortis justo netus dis. Eu in fringilla vulputate nunc nec. Dui, massa viverr .</p>
+                        <FaArrowRight size={16}  className='text-gray-700 hover:text-navyBlue' />
+                        <p className="text-gray-500">Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla lobortis justo netus dis. </p>
                     </div>
                     <div className='flex justify-start items-center gap-2'>
-                        <BiLeftArrow size={10} className='text-gray-700 hover:text-navyBlue' />
-                        <p>Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla lobortis justo netus dis. Eu in fringilla vulputate nunc nec. Dui, massa viverr .</p>
+                        <FaArrowRight size={16}  className='text-gray-700 hover:text-navyBlue' />
+                        <p className="text-gray-500">Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla lobortis justo netus dis. </p>
                     </div>
                     <div className='flex justify-start items-center gap-2'>
-                        <BiLeftArrow size={10} className='text-gray-700 hover:text-navyBlue' />
-                        <p>Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla lobortis justo netus dis. Eu in fringilla vulputate nunc nec. Dui, massa viverr .</p>
+                        <FaArrowRight size={16}  className='text-gray-700 hover:text-navyBlue' />
+                        <p className="text-gray-500">Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla lobortis justo netus dis. </p>
                     </div>
                     <div className='flex justify-start items-center gap-2'>
-                        <BiLeftArrow size={10} className='text-gray-700 hover:text-navyBlue' />
-                        <p>Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla lobortis justo netus dis. Eu in fringilla vulputate nunc nec. Dui, massa viverr .</p>
+                        <FaArrowRight size={16}  className='text-gray-700 hover:text-navyBlue' />
+                        <p className="text-gray-500">Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla lobortis justo netus dis. </p>
                     </div>
                     <div className='flex justify-start items-center gap-2'>
-                        <FaArrowRight size={10} className='text-gray-700 hover:text-navyBlue' />
-                        <p>Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla lobortis justo netus dis. Eu in fringilla vulputate nunc nec. Dui, massa viverr .</p>
+                        <FaArrowRight size={16} className='text-gray-700 hover:text-navyBlue' />
+                        <p className="text-gray-500">Aliquam dis vulputate vulputate integer sagittis. Faucibus ds diam arcu, nulla lobortis justo netus dis.</p>
                     </div>
 
                 </div>
             </div>
+            <div className='bg-white w-full px-40 py-10'>
+                <h1 className='text-4xl font-semibold text-navyBlue font-josefin-sans py-10 pb-20'>Related Products</h1>
+                <div className="grid grid-cols-4 gap-10">
+                    <PRDesignSimple />
+                    <PRDesignSimple />
+                    <PRDesignSimple />
+                    <PRDesignSimple />
+                </div>
+            </div>
+            <Companies />
         </div>
     )
 }
