@@ -3,25 +3,25 @@ import React from 'react'
 import { FaPenNib } from 'react-icons/fa'
 import { SlCalender } from 'react-icons/sl'
 
-const BlogCard = () => {
+const BlogCard = ({size = "MINI", content = ""}: {size?: "MINI" | "LARGE", content?:string}) => {
     return (
-        <div className='w-full h-[495px] flex flex-col rounded-md group'>
+        <div className='w-full flex flex-col rounded-md group'>
 
-            <Image src={"/image1.png"} width={377} height={255} alt='blog' className='rounded-md h-1/2 object-cover' />
+            <Image src={"/image1.png"} width={size == "MINI" ? 377 : 870} height={size == "MINI" ? 255 : 543} alt='blog' className={`rounded-md ${size == "MINI" ? 'h-1/2' : 'h-2/3'}  object-cover`} />
             <div className='flex flex-col py-4 px-2 items-start gap-3'>
                 <div className='flex justify-start gap-4'>
                     <div className="flex justify-start items-center gap-1">
                         <FaPenNib className='text-pink size-3' />
-                        <p className='font-josefin-sans text-navyBlue text-sm'>Sarfaraz Unar</p>
+                        <p className={`font-josefin-sans text-navyBlue text-sm ${size == "MINI" ? 'bg-white' : 'bg-pink/20'}`}>Sarfaraz Unar</p>
                     </div>
                     <div className="flex justify-start items-center gap-1">
                         <SlCalender className='text-[#FFA454] size-3' />
-                        <p className='font-josefin-sans text-navyBlue text-sm'>08-12-2024</p>
+                        <p className={`font-josefin-sans text-navyBlue text-sm ${size == "MINI" ? 'bg-white' : 'bg-pink/20'}`}>08-12-2024</p>
                     </div>
                 </div>
 
-                <h4 className='font-josefin-sans font-bold text-lg text-navyBlue group-hover:text-red'>Top essential Trends in 2024</h4>
-                <p className='font-lato text-[#72718F] font-normal'>More off this less hello samlande lied much over tightly circa horse taped mightly</p>
+                <h4 className={`font-josefin-sans font-bold  text-navyBlue ${size == "MINI" ? 'group-hover:text-red text-lg' : 'text-3xl'} `}>Top essential Trends in 2024</h4> 
+                <p className='font-lato text-[#72718F] font-normal '>More off this less hello samlande lied much over tightly circa horse taped mightly {content}</p>
                 <button className='bg-white text-navyBlue underline font-lato font-normal hover:text-black group-hover:text-pink'>Read More</button>
             </div>
         </div>
