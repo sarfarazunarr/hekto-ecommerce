@@ -30,7 +30,7 @@ const PRDesign3 = ({showDots=false}: {showDots?: boolean}) => {
 
 
             {/* icons */}
-            <div className='flex items-center gap-2 absolute bottom-28 left-16 z-10 opacity-0 group-hover:opacity-100'>
+            <div className='flex items-center gap-2 absolute bottom-28 left-7  md:left-8 lg:left-16 z-10 opacity-0 group-hover:opacity-100'>
                 <div className='flex justify-center items-center bg-transparent text-[#1490b9] hover:bg-[#e6e6e7] hover:text-offNavyBlue cursor-pointer rounded-full size-8 p-1'>
                     <BsCart2 size={25} />
                 </div>

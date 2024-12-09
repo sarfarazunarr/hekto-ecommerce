@@ -9,7 +9,6 @@ import PromotedProduct from "@/components/PromotedProduct";
 import Subscription from "@/components/Subscription";
 import SupportCard from "@/components/SupportCard";
 import TrendingProducts from "@/components/TrendingProducts";
-import Image from "next/image";
 
 export default function Home() {
   return (

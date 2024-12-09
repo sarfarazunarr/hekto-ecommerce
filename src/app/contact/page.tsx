@@ -11,7 +11,7 @@ const Contact = () => {
     return (
         <div className='w-full'>
             <MainHeader title='Contact Us' prev='Home . Pages . ' current='Contact Us' />
-            <div className='py-10 px-36 grid grid-cols-2 gap-10 justify-between items-start'>
+            <div className='py-10 px-5 md:px-10 lg:px-36 grid lg:grid-cols-2 gap-10 justify-between items-start'>
                 <div className='flex flex-col items-start gap-4'>
                     <Heading text='Information About Us' />
                     <p className='font-lato text-[#8A8FB9]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis neque ultrices mattis aliquam, malesuada diam est. Malesuada sem tristique amet erat vitae eget dolor lobortis. Accumsan faucibus vitae lobortis quis bibendum quam.</p>
@@ -23,7 +23,7 @@ const Contact = () => {
                 </div>
                 <div className='flex flex-col items-start gap-4'>
                     <Heading text='Contact Way' />
-                    <div className='grid grid-cols-2 gap-5'>
+                    <div className='grid md:grid-cols-2 gap-5'>
                         <div className='flex justify-start items-center gap-3'>
                             <div className='bg-[#5726DF] size-11 rounded-full flex justify-center items-center text-white text-2xl'>
                                 <MdContacts />
@@ -64,7 +64,7 @@ const Contact = () => {
                 </div>
             </div>
 
-            <div className='py-10 px-36 grid grid-cols-2 gap-10 justify-between items-center'>
+            <div className='py-10 px-5 md:px-10 lg:px-36 grid lg:grid-cols-2 gap-10 justify-between items-center'>
                 <div className='flex flex-col items-start gap-4'>
                     <Heading text='Get in Touch' />
                     <p className='font-lato text-[#8A8FB9]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis neque ultrices tristique amet erat vitae eget dolor los vitae lobortis quis bibendum quam.</p>
@@ -76,7 +76,7 @@ const Contact = () => {
                     </div>
                     <button className='bg-pink rounded-sm font-josefin-sans px-8 text-white py-3'>Send Message</button>
                 </div>
-                <Image src={"/contact.png"} width={725} height={695} alt='contact' className='w-full' />
+                <Image src={"/contact.png"} width={725} height={695} alt='contact' className=' hidden lg:w-full' />
             </div>
         </div>
     )

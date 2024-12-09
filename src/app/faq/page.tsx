@@ -8,7 +8,7 @@ const FAQs = () => {
     return (
         <div className='w-full'>
             <MainHeader title='FAQs' prev='Home . Pages . ' current='FAQ' />
-            <div className='w-full px-40 grid grid-cols-2 gap-10'>
+            <div className='w-full px-5 md:px-12 lg:px-40 grid md:grid-cols-2 gap-10'>
                 <div>
 
                     <Heading text='General Information' />
@@ -31,7 +31,7 @@ const FAQs = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col justify-start items-start gap-4 bg-[#F8F8FD] p-14'>
+                <div className='flex flex-col justify-start items-start gap-4 bg-[#F8F8FD] p-2 lg:p-14'>
                     <h2 className={`py-2 text-2xl font-bold font-josefin-sans text-center text-navyBlue`}>
                         Ask a Question
                     </h2>

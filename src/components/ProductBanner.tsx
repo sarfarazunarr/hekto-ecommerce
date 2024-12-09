@@ -7,12 +7,12 @@ const ProductBanner = () => {
     return (
         <>
             <Heading text='Discount Item' />
-            <div className='flex justify-center items-center gap-6 py-2'>
+            <div className='flex flex-wrap justify-center items-center gap-6 py-2'>
                 <p className='text-pink lato text-lg cursor-pointer'>Wood Chair</p>
                 <p className='text-navyBlue lato text-lg cursor-pointer'>Plastic Chair</p>
                 <p className='text-navyBlue lato text-lg cursor-pointer'>Sofa Collection</p>
             </div>
-            <div className='w-full h-[570px] px-40 py-10 flex justify-center items-center bg-white'>
+            <div className='w-full h-auto lg:h-[570px] px-5 lg:px-40 py-10 flex flex-col-reverse gap-10 md:gap-0 md:flex-row justify-center items-center bg-white'>
 
                 <div className='flex flex-col gap-5'>
                     <h2 className='text-4xl font-bold font-josefin-sans text-navyBlue'>20% Discount Of All Products</h2>

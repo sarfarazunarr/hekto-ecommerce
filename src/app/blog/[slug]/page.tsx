@@ -1,11 +1,9 @@
 import MainHeader from '@/components/MainHeader'
 import Image from 'next/image'
 import React from 'react'
-import { FaFacebookF, FaInstagram, FaLongArrowAltLeft, FaLongArrowAltRight, FaPenNib, FaTwitter } from 'react-icons/fa'
+import { FaFacebookF, FaInstagram, FaPenNib, FaTwitter } from 'react-icons/fa'
 import { SlCalender } from 'react-icons/sl'
 import Sidebar from '../Sidebar'
-import { BiPlay } from 'react-icons/bi'
-import ProductCard from '@/components/mini/ProductCard'
 import PRDesignSimple from '@/components/mini/PRDesignSimple'
 import Navigator from './Navigator'
 import RelatedPostBar from './RelatedPostBar'
@@ -16,9 +14,9 @@ const SingleBlog = () => {
     return (
         <div className='w-full'>
             <MainHeader title='Single Blog' prev='Home . Pages . ' current='Single Blog' />
-            <div className='w-full px-40 py-20 grid grid-cols-7 gap-10'>
-                <div className='col-span-5'>
-                    <Image src={"/image1.png"} width={870} height={543} alt='blog' className={`rounded-md object-cover`} />
+            <div className='w-full px-5 lg:px-40 py-20 grid md:grid-cols-7 gap-10'>
+                <div className='col-span-full lg:col-span-5'>
+                    <Image src={"/image1.png"} width={870} height={543} alt='blog' className={` rounded-md object-cover`} />
                     <div className='flex flex-col py-4 px-2 items-start gap-3'>
                         <div className='flex justify-start gap-4'>
                             <div className="flex justify-start items-center gap-1">
@@ -40,17 +38,14 @@ const SingleBlog = () => {
                             <blockquote className='bg-[#FAFAFB] border-l-2 p-2 my-5 leading-8 text-gray-500 border-red'>
                                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Praesentium, nemo iusto sapiente voluptates minima quaerat ipsum aut earum maxime amet deserunt obcaecati cum id reiciendis.
                             </blockquote>
-                            <div className='grid grid-cols-2 gap-5'>
-                                <div className='rounded-md bg-[url("/girl.png")] bg-center bg-cover flex justify-center items-center bg-opacity-70'>
-                                    <div className='size-16 flex justify-center items-center bg-white rounded-full text-4xl text-red'>
-                                        <BiPlay />
-                                    </div>
-                                </div>
+                            <div className='grid md:grid-cols-2 gap-5'>
+                                
+                                <Image src={"/girl.png"} width={418} height={245} alt='girl' className='rounded-md' />
                                 <Image src={"/girl.png"} width={418} height={245} alt='girl' className='rounded-md' />
                             </div>
                             <p className='py-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur ullam necessitatibus sapiente ducimus labore tenetur quasi harum, sed rem quidem perspiciatis exercitationem in ab aliquid? Praesentium totam beatae molestiae consequuntur.</p>
 
-                            <div className='grid grid-cols-4 items-center gap-1'>
+                            <div className='grid md:grid-cols-3 lg:grid-cols-4 items-center gap-1'>
                                 <PRDesignSimple version={2} />
                                 <PRDesignSimple version={2} />
                                 <PRDesignSimple version={2} />

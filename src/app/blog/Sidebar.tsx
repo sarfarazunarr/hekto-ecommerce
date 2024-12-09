@@ -6,7 +6,7 @@ import { FaInstagram } from 'react-icons/fa6';
 
 const Sidebar = () => {
   return (
-    <div className='flex flex-col gap-5 p-5 col-span-2'>
+    <div className='flex flex-col gap-5 p-5 md:col-span-3 lg:col-span-2'>
     <div>
         <h2 className='font-semibold font-josefin-sans text-navyBlue text-2xl py-4'>Search</h2>
         <div className='flex justify-between items-center border border-[#BDBDD8] rounded-sm py-2 px-3'>

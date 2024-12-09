@@ -3,13 +3,14 @@ import React from 'react'
 import { IoIosCheckmarkCircle } from 'react-icons/io'
 import Input from './Input'
 import JustItem from '../cart/JustItem'
+import Link from 'next/link'
 
 const Payment = () => {
     return (
         <div className='w-full'>
             <MainHeader title='Checkout' current='Payment' prev='Home . Pages . Checkout . ' />
-            <div className='w-full px-40 py-20 grid grid-cols-6'>
-                <div className='col-span-4 flex flex-col gap-y-3 p-10 bg-[#F8F8FD]'>
+            <div className='w-full px-2 lg:px-40 py-20 grid grid-cols-4 lg:grid-cols-6'>
+                <div className='col-span-4 flex flex-col gap-y-3 p-3 lg:p-10 bg-[#F8F8FD]'>
                     <div className='flex justify-between items-center py-4'>
                         <h2 className='font-josefin-sans font-bold text-lg text-navyBlue' >Contact Information</h2>
                         <p className='font-lato font-medium text-[#C1C8E1]'>Already have an account? Log in</p>
@@ -36,7 +37,7 @@ const Payment = () => {
                     </div>
                 </div>
 
-                <div className='flex flex-col gap-10 col-span-2 p-4'>
+                <div className='flex flex-col gap-10 col-span-full lg:col-span-2 p-4'>
                     <div className='flex flex-col gap-5'>
                         {[0, 1, 2, 3, 4].map((val) => {
                             return (
@@ -60,7 +61,7 @@ const Payment = () => {
                             <IoIosCheckmarkCircle className='text-xs text-green-600' />
                             <p className='text-xs text-gray-500 font-lato'>Shipping and Taxes calculated at checkout.</p>
                         </div>
-                        <button className='bg-green-500 rounded-md text-white w-full py-3'>Proceed to Checkout</button>
+                        <Link href={"/order-completion"} className='bg-green-500 rounded-md text-white w-full py-3'>Place Order</Link>
                     </div>
                 </div>
             </div>

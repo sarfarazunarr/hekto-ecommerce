@@ -1,11 +1,11 @@
 import React from 'react'
-import { FaFacebook, FaFacebookF, FaInstagramSquare, FaTwitter } from 'react-icons/fa'
+import { FaFacebookF, FaInstagramSquare, FaTwitter } from 'react-icons/fa'
 
 const Footer = () => {
     return (
         <>
-        <div className='w-full px-32 py-16 bg-skyBlue grid grid-cols-5 gap-10'>
-            <div className='flex flex-col gap-2 col-span-2'>
+        <div className='w-full h-auto px-5 lg:px-32 py-16 bg-skyBlue grid md:grid-cols-2 lg:grid-cols-5 gap-10'>
+            <div className='flex flex-col gap-2 md:col-span-2'>
                 <div className='logo text-[34px] font-bold font-josefin-sans text-black'>Hekto</div>
                 <div className='grid grid-cols-6'>
                     <input type="text" className='bg-white px-3 py-2 col-span-4 text-gray-700 placeholder:text-gray-400 font-lato outline-none' placeholder='Enter Email Address...' />
@@ -49,7 +49,7 @@ const Footer = () => {
                 </ul>
             </div>
         </div>
-        <div className='px-40 py-5 bg-skyBlue flex justify-between items-center'>
+        <div className='px-5 lg:px-40 py-5 bg-skyBlue flex justify-between items-center'>
             <p className='text-[#8A8FB9]'>Techryzer - All right reserved</p>
             <div className="flex justify-end gap-2">
                 <div className='flex justify-center items-center bg-navyBlue rounded-full size-5'>

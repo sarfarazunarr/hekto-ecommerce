@@ -2,3 +2,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.cross div:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .cross div:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .cross div:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }

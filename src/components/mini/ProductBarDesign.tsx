@@ -7,20 +7,20 @@ import { TbHeart } from 'react-icons/tb'
 
 const ProductBarDesign = () => {
     return (
-        <div className='w-full h-min my-5 flex'>
+        <div className='w-full h-min my-5 flex flex-row items-center'>
             {/* Image */}
-            <div className='w-[330px] h-min bg-skyBlue flex justify-center items-center'>
+            <div className='w-1/3 lg:w-[330px] h-min bg-skyBlue flex justify-center items-center'>
                 <Image src={'/image1.png'} height={217} width={330} alt='product' />
             </div>
 
             {/* Details */}
-            <div className='flex flex-col items-start justify-start gap-y-4 bg-white p-5'>
+            <div className='flex flex-col items-start justify-start gap-y-1 md:gap-y-4 bg-white p-5'>
                 <div className='flex justify-start items-center gap-3'>
-                    <h1 className='text-navyBlue font-lato text-xl font-semibold'>Cantilever chair</h1>
-                    <div className='flex justify-center items-center gap-3'>
-                        <div className='size-3 bg-[#05E6B7] rounded-full'></div>
-                        <div className='size-3 bg-pink rounded-full'></div>
-                        <div className='size-3 bg-navyBlue group-hover:bg-white rounded-full'></div>
+                    <h1 className='text-navyBlue font-lato text-lg md:text-xl font-semibold'>Cantilever chair</h1>
+                    <div className='md:flex justify-center items-center gap-3 hidden'>
+                        <div className='size-2 md:size-3 bg-[#05E6B7] rounded-full'></div>
+                        <div className='size-2 md:size-3 bg-pink rounded-full'></div>
+                        <div className='size-2 md:size-3 bg-navyBlue group-hover:bg-white rounded-full'></div>
                     </div>
                 </div>
                 <div className="flex justify-start items-center gap-4">
@@ -33,7 +33,7 @@ const ProductBarDesign = () => {
                         <FaStar className='text-gray-400' />
                     </div>
                 </div>
-                <p className='font-lato text-gray-400 w-[500px]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna in est adipiscing in phasellus non in justo.</p>
+                <p className='font-lato text-gray-400 w-[500px] hidden md:block'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna in est adipiscing in phasellus non in justo.</p>
 
 
                 <div className='flex justify-start items-center gap-5'>

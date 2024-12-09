@@ -7,7 +7,7 @@ const Login = () => {
     <div className='w-full'>
       <MainHeader title='My Account' prev='Home . Pages . ' current='My Account' />
       <div className='flex justify-center items-center w-full'>
-        <div className='flex flex-col shadow-sm shadow-gray-500 rounded-md p-10 w-[545px] my-28'>
+        <div className='flex flex-col shadow-sm shadow-gray-500 rounded-md p-10 md:w-[545px] my-28'>
             <div>
 
             <h3 className='text-black font-josefin-sans text-4xl font-bold text-center'>Login</h3>

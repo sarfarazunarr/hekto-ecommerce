@@ -1,12 +1,16 @@
+"use client";
 import Companies from '@/components/Companies'
 import MainHeader from '@/components/MainHeader'
 import ProductCard from '@/components/mini/ProductCard'
 import StoreDatahandler from '@/components/mini/StoreDatahandler'
-import React from 'react'
+import React, { useState } from 'react'
 import Checkbox from './components/Checkbox'
 import { FaCircle } from 'react-icons/fa'
 
 const Sidebar = () => {
+
+    const [isActive, setIsActive] = useState(false)
+
     const brand = ["Coaster Furniture",
         "Fusion Dot High Fusion",
         "Unique Furniture Restore",
@@ -38,14 +42,25 @@ const Sidebar = () => {
         "Green",
         "Purple", "Sky"
     ]
+
     return (
         <div>
 
             <MainHeader title='Shop Left Sidebar' prev='Home . Pages . Shop . ' current='Shop Left Sidebar' />
 
             <StoreDatahandler />
-            <div className='px-40 w-full grid grid-cols-4'>
-                <div className='flex flex-col gap-3 px-3'>
+            <div className='flex md:hidden p-5 justify-start items-center gap-1'>
+                <p className='text-lg font-lato text-navyBlue font-normal'>Filters</p>
+                <div className='flex justify-end items-center px-5'>
+                    <div className={`w-8 md:hidden flex flex-col justify-center gap-1 ${isActive ? 'cross' : ''}`} onClick={() => setIsActive(!isActive)}>
+                        <div className="w-full h-1 bg-gray-700 transition-transform duration-500 ease-in-out"></div>
+                        <div className="w-full h-1 bg-gray-700 transition-transform duration-500 ease-in-out"></div>
+                        <div className="w-full h-1 bg-gray-700 transition-transform duration-500 ease-in-out"></div>
+                    </div>
+                </div>
+            </div>
+            <div className='px-5 lg:px-40 w-full grid md:grid-cols-4'>
+                <div className={`flex ${isActive ? 'block md:block' : 'hidden md:block'} bg-white flex-col gap-3 px-3`}>
                     <div className='flex flex-col gap-3'>
                         <h3 className='font-bold underline pb-2 font-josefin-sans text-offBlue text-xl'>Product Brand</h3>
                         <div className='flex flex-col gap-1'>
@@ -102,7 +117,7 @@ const Sidebar = () => {
                         </div>
                     </div>
                 </div>
-                <div className=" py-10 col-span-3">
+                <div className=" py-10 col-span-full lg:col-span-3">
                     <ProductCard designType='BAR' showDots={true} />
                     <ProductCard designType='BAR' showDots={true} />
                     <ProductCard designType='BAR' showDots={true} />

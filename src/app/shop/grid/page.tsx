@@ -11,7 +11,7 @@ const ShopList = () => {
             <MainHeader title='Shop List' prev='Home . Pages . Shop . ' current='Shop List' />
 
             <StoreDatahandler />
-            <div className="px-40 w-full py-10">
+            <div className="px-5 md:px-10 lg:px-40 w-full py-10">
                 <ProductCard designType='BAR' showDots={true} />
                 <ProductCard designType='BAR' showDots={true} />
                 <ProductCard designType='BAR' showDots={true} />
