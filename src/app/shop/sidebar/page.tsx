@@ -1,13 +1,57 @@
 "use client";
 import Companies from '@/components/Companies'
 import MainHeader from '@/components/MainHeader'
-import ProductCard from '@/components/mini/ProductCard'
+import ProductCard, { ProductType } from '@/components/mini/ProductCard'
 import StoreDatahandler from '@/components/mini/StoreDatahandler'
 import React, { useState } from 'react'
 import Checkbox from './components/Checkbox'
 import { FaCircle } from 'react-icons/fa'
 
 const Sidebar = () => {
+    const products: ProductType[] = [
+        {
+            title: "sit amet consectetur",
+            price: 31.00,
+            discountPrice: 52.00,
+            image: "/product31.png"
+          },
+          {
+            title: "vel elit eusim",
+            price: 26.00,
+            discountPrice: 42.00,
+            image: "/product32.png"
+          },
+          {
+            title: "sit amet consectetur",
+            price: 31.00,
+            discountPrice: 52.00,
+            image: "/product33.png"
+          },
+          {
+            title: "sed do eiusmod",
+            price: 23.00,
+            discountPrice: 39.00,
+            image: "/product34.png"
+          },
+          {
+            title: "tempor incididunt ut",
+            price: 28.00,
+            discountPrice: 49.00,
+            image: "/product35.png"
+          },
+          {
+            title: "labore et dolore",
+            price: 32.00,
+            discountPrice: 55.00,
+            image: "/product36.png"
+          },
+          {
+            title: "magna aliqua ut",
+            price: 29.00,
+            discountPrice: 53.00,
+            image: "/product37.png"
+          },
+    ]
 
     const [isActive, setIsActive] = useState(false)
 
@@ -118,14 +162,10 @@ const Sidebar = () => {
                     </div>
                 </div>
                 <div className=" py-10 col-span-full lg:col-span-3">
-                    <ProductCard designType='BAR' showDots={true} />
-                    <ProductCard designType='BAR' showDots={true} />
-                    <ProductCard designType='BAR' showDots={true} />
-                    <ProductCard designType='BAR' showDots={true} />
-                    <ProductCard designType='BAR' showDots={true} />
-                    <ProductCard designType='BAR' showDots={true} />
-                    <ProductCard designType='BAR' showDots={true} />
-                    <ProductCard designType='BAR' showDots={true} />
+                    {products.map((product, index) => (
+                        
+                    <ProductCard key={index} designType='BAR' data={product} showDots={true} />
+                    ))}
 
                 </div>
             </div>

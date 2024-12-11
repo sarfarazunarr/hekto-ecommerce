@@ -5,6 +5,7 @@ import { IoIosCheckmarkCircle } from 'react-icons/io'
 import Link from 'next/link'
 
 const CartPage = () => {
+    const images = ['/cart1.png', '/cart2.png', '/cart3.png', '/cart4.png', '/cart5.png']
     return (
         <div className='w-full'>
             <MainHeader title='Shopping Cart' current='Shopping Cart' prev='Home . Pages . ' />
@@ -22,10 +23,9 @@ const CartPage = () => {
                         </thead>
 
                         <tbody>
-                            <CartItem />
-                            <CartItem />
-                            <CartItem />
-                            <CartItem />
+                            {images.map((image, index) => (
+                                <CartItem key={index} image={image} />
+                            ))}
                         </tbody>
                     </table>
                     <div className='flex justify-between items-center'>
@@ -49,7 +49,7 @@ const CartPage = () => {
                                     <IoIosCheckmarkCircle className='text-xs text-green-600' />
                                     <p className='text-xs text-gray-500 font-lato'>Shipping and Taxes calculated at checkout.</p>
                                 </div>
-                                <Link href={"/payment"} className='bg-green-500 rounded-md text-white w-full py-3'>Proceed to Checkout</Link>
+                                <Link href={"/payment"}><button  className='bg-green-500 rounded-md text-white w-full py-3'>Proceed to Checkout</button></Link>
                             </div>
                         </div>
                         <div className='flex flex-col md:col-span-2 lg:col-span-2'>

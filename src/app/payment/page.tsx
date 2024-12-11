@@ -6,6 +6,7 @@ import JustItem from '../cart/JustItem'
 import Link from 'next/link'
 
 const Payment = () => {
+    const images = ['/cart1.png', '/cart2.png', '/cart3.png', '/cart4.png', '/cart5.png']
     return (
         <div className='w-full'>
             <MainHeader title='Checkout' current='Payment' prev='Home . Pages . Checkout . ' />
@@ -39,10 +40,10 @@ const Payment = () => {
 
                 <div className='flex flex-col gap-10 col-span-full lg:col-span-2 p-4'>
                     <div className='flex flex-col gap-5'>
-                        {[0, 1, 2, 3, 4].map((val) => {
+                        {images.map((image, index) => {
                             return (
-                                <div key={val} className='border-b border-gray-300 pb-2 flex justify-between items-center'>
-                                    <JustItem />
+                                <div key={index} className='border-b border-gray-300 pb-2 flex justify-between items-center'>
+                                    <JustItem image={image} />
                                     <p className='font-semibold font-josefin-sans text-navyBlue'>$32.00</p>
                                 </div>
                             )
@@ -61,7 +62,7 @@ const Payment = () => {
                             <IoIosCheckmarkCircle className='text-xs text-green-600' />
                             <p className='text-xs text-gray-500 font-lato'>Shipping and Taxes calculated at checkout.</p>
                         </div>
-                        <Link href={"/order-completion"} className='bg-green-500 rounded-md text-white w-full py-3'>Place Order</Link>
+                        <Link href={"/order-completed"}><button className='bg-green-500 rounded-md text-white w-full py-3'>Place Order</button></Link>
                     </div>
                 </div>
             </div>

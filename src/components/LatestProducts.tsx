@@ -1,8 +1,10 @@
 import React from 'react'
 import Heading from './mini/Heading'
-import ProductCard from './mini/ProductCard'
+import ProductCard, { ProductType } from './mini/ProductCard'
 
 const LatestProducts = () => {
+    const products: ProductType[] = [{title: "Comfort Handy Craft", image:'/product5.png', price: 42.00, discountPrice: 65.00}, {title: "Comfort Handy Craft", image:'/product6.png', price: 42.00, discountPrice: 65.00}, {title: "Comfort Handy Craft", image:'/product7.png', price: 42.00, discountPrice: 65.00}, {title: "Comfort Handy Craft", image:'/product8.png', price: 42.00, discountPrice: 65.00}, {title: "Comfort Handy Craft", image:'/product9.png', price: 42.00, discountPrice: 65.00},{title: "Comfort Handy Craft", image:'/product10.png', price: 42.00, discountPrice: 65.00}]
+
     return (
         <div className='w-full px-5 lg:px-40 py-10'>
             <Heading text='Latest Products' />
@@ -13,12 +15,9 @@ const LatestProducts = () => {
                 <p className='text-navyBlue lato text-lg cursor-pointer'>Special Offer</p>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-10'>
-                <ProductCard designType='MEDIUM 1/3' />
-                <ProductCard designType='MEDIUM 1/3' />
-                <ProductCard designType='MEDIUM 1/3' />
-                <ProductCard designType='MEDIUM 1/3' />
-                <ProductCard designType='MEDIUM 1/3' />
-                <ProductCard designType='MEDIUM 1/3' />
+                {products.map((product, index) => (
+                    <ProductCard key={index} data={product} designType='MEDIUM 1/3' />
+                ))}
             </div>
         </div>
     )

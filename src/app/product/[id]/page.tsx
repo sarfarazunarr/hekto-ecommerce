@@ -6,18 +6,19 @@ import React from 'react'
 import { FaArrowRight, FaCircle, FaHeart, FaStar } from 'react-icons/fa'
 
 const ProductDetail = () => {
+
     return (
         <div className='w-full'>
             <MainHeader title='Product Details' current='Product Details' prev='Home . Pages . ' />
             <div className='w-full px-5 lg:px-56 py-20'>
                 <div className="grid grid-cols-3 md:grid-cols-7 gap-3 rounded-md shadow-lg shadow-gray-200">
                     <div className="flex flex-col gap-2">
-                        <Image src={"/product1.png"} width={151} height={155} alt='product' />
-                        <Image src={"/product1.png"} width={151} height={155} alt='product' />
-                        <Image src={"/product1.png"} width={151} height={155} alt='product' />
+                        <Image src={"/productMain39.png"} width={151} height={155} alt='product' />
+                        <Image src={"/productMain40.png"} width={151} height={155} alt='product' />
+                        <Image src={"/productMain41.png"} width={151} height={155} alt='product' />
                     </div>
                     <div className='col-span-2 flex justify-center items-center bg-skyBlue'>
-                        <Image src={"/product1.png"} width={375} height={487} alt='product' className='col-span-2' />
+                        <Image src={"/productMain38.png"} width={375} height={487} alt='product' className='col-span-2' />
                     </div>
                     <div className=' flex flex-col gap-3 p-5 col-span-4'>
                         <h2 className='text-4xl text-[#0D134E] font-semibold font-josefin-sans'>Playwood arm chair</h2>
@@ -94,10 +95,10 @@ const ProductDetail = () => {
             <div className='bg-white w-full px-5 lg:px-40 py-10'>
                 <h1 className='text-4xl font-semibold text-navyBlue font-josefin-sans py-10 pb-20'>Related Products</h1>
                 <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-10">
-                    <PRDesignSimple />
-                    <PRDesignSimple />
-                    <PRDesignSimple />
-                    <PRDesignSimple />
+                    <PRDesignSimple image='/image2.png' />
+                    <PRDesignSimple image='/image3.png' />
+                    <PRDesignSimple image='/image5.png' />
+                    <PRDesignSimple image='/image6.png' />
                 </div>
             </div>
             <Companies />

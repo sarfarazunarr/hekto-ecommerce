@@ -1,11 +1,11 @@
 import React from 'react'
 import JustItem from './JustItem'
 
-const CartItem = () => {
+const CartItem = ({image}: {image: string}) => {
     return (
         <tr>
             <td className='my-5'>
-                <JustItem />
+                <JustItem image={image} />
             </td>
             <td className='font-semibold text-navyBlue text-center font-josefin-sans'>$32.00</td>
             <td className='pl-10'>
@@ -15,7 +15,7 @@ const CartItem = () => {
                     <button className='bg-gray-300 text-gray-700'>-</button>
                 </div>
             </td>
-            <td className='font-semibold text-navyBlue text-center font-josefin-sans'>$142.00</td>
+            <td className='font-semibold text-navyBlue text-center font-josefin-sans'>$219.00</td>
         </tr>
     )
 }

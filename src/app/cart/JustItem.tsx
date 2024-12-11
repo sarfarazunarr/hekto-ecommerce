@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import React from 'react'
 
-const JustItem = () => {
+const JustItem = ({image}: {image: string}) => {
     return (
-        <div className='flex flex-col md:flex-row justify-start items-center gap-5'>
-            <Image src={"/image1.png"} width={83} height={87} alt='image' className='rounded-md object-cover' />
+        <div className='flex flex-col md:flex-row justify-start items-center gap-5 p-1'>
+            <Image src={image} width={83} height={87} alt='image' className='rounded-md object-cover' />
             <div className='flex flex-col'>
                 <h2>Ut diam consequat</h2>
                 <div className='flex justify-start items-center'>

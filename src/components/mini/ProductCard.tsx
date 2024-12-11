@@ -4,15 +4,21 @@ import PRDesign2 from "./PRDesign2"
 import PRDesign3 from "./PRDesign3"
 import ProductBarDesign from "./ProductBarDesign"
 
+export interface ProductType{
+    title: string,
+    image: string,
+    price: number,
+    discountPrice?:number
+}
 
-const ProductCard = ({ designType, showDots = false }: { designType: "SIMPLE 1/4" | "MEDIUM 1/3" | "SIMPLEST" | "CATEGORY PRODUCT" | "BAR", showDots?:boolean,  }) => {
+const ProductCard = ({ designType, showDots = false, data }: { designType: "SIMPLE 1/4" | "MEDIUM 1/3" | "SIMPLEST" | "CATEGORY PRODUCT" | "BAR", showDots?:boolean, data:ProductType}) => {
     return (
         <>
-           {designType == "SIMPLE 1/4" && <PRDesign1 />}
-           {designType == "MEDIUM 1/3" && <PRDesign2 />}
-           {designType == "SIMPLEST" && <PRDesign3 showDots={showDots} />}
-           {designType == "CATEGORY PRODUCT" && <CategoryProduct />}
-           {designType == "BAR" && <ProductBarDesign />}
+           {designType == "SIMPLE 1/4" && <PRDesign1 data={data} />}
+           {designType == "MEDIUM 1/3" && <PRDesign2 data={data} />}
+           {designType == "SIMPLEST" && <PRDesign3 data={data} showDots={showDots} />}
+           {designType == "CATEGORY PRODUCT" && <CategoryProduct data={data} />}
+           {designType == "BAR" && <ProductBarDesign data={data} />}
         </>
     )
 }

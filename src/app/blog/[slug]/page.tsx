@@ -16,7 +16,7 @@ const SingleBlog = () => {
             <MainHeader title='Single Blog' prev='Home . Pages . ' current='Single Blog' />
             <div className='w-full px-5 lg:px-40 py-20 grid md:grid-cols-7 gap-10'>
                 <div className='col-span-full lg:col-span-5'>
-                    <Image src={"/image1.png"} width={870} height={543} alt='blog' className={` rounded-md object-cover`} />
+                    <Image src={"/blog4.png"} width={870} height={543} alt='blog' className={` rounded-md object-cover`} />
                     <div className='flex flex-col py-4 px-2 items-start gap-3'>
                         <div className='flex justify-start gap-4'>
                             <div className="flex justify-start items-center gap-1">
@@ -46,10 +46,10 @@ const SingleBlog = () => {
                             <p className='py-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur ullam necessitatibus sapiente ducimus labore tenetur quasi harum, sed rem quidem perspiciatis exercitationem in ab aliquid? Praesentium totam beatae molestiae consequuntur.</p>
 
                             <div className='grid md:grid-cols-3 lg:grid-cols-4 items-center gap-1'>
-                                <PRDesignSimple version={2} />
-                                <PRDesignSimple version={2} />
-                                <PRDesignSimple version={2} />
-                                <PRDesignSimple version={2} />
+                                <PRDesignSimple image='/image2.png' version={2} />
+                                <PRDesignSimple image='/image3.png' version={2} />
+                                <PRDesignSimple image='/image5.png' version={2} />
+                                <PRDesignSimple image='/image6.png' version={2} />
                             </div>
 
                             <p className='py-2'>

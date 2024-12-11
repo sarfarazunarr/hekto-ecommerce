@@ -3,26 +3,28 @@ import React from 'react'
 import { BsCart2 } from 'react-icons/bs'
 import { LiaSearchPlusSolid } from 'react-icons/lia'
 import { TbHeart } from 'react-icons/tb'
+import { ProductType } from './ProductCard'
+import Link from 'next/link'
 
-const PRDesign1 = () => {
+const PRDesign1 = ({data}: {data: ProductType}) => {
     return (
         <div className='w-full h-[360px] flex flex-col relative group transition-all duration-200 hover:shadow-sm shadow-gray-300'>
 
             {/* Image */}
             <div className='w-full h-2/3 bg-skyBlue flex justify-center items-center'>
-                <Image src={'/product1.png'} height={170} width={170} alt='product' />
+                <Image src={data.image ? data.image : '/product1.png'} height={170} width={170} alt='product' />
             </div>
 
             {/* Details */}
             <div className='flex flex-col items-center gap-2 bg-white group-hover:bg-blue  py-2'>
-                <h1 className='text-pink group-hover:text-white font-lato text-lg font-semibold'>Cantilever chair</h1>
+            <Link href={"/product/1"}><h1 className='text-pink group-hover:text-white font-lato text-lg font-semibold'>{data.title}</h1></Link>
                 <div className='flex justify-center items-center gap-3'>
                     <div className='w-4 h-1 bg-[#05E6B7] rounded-full'></div>
                     <div className='w-4 h-1 bg-pink rounded-full'></div>
                     <div className='w-4 h-1 bg-navyBlue group-hover:bg-white rounded-full'></div>
                 </div>
                 <p className='font-josefin-sans font-normal text-sm text-offBlue group-hover:text-white'>Code - Y523201</p>
-                <p className='font-lato font-normal text-sm text-offBlue group-hover:text-white'>$42.00</p>
+                <p className='font-lato font-normal text-sm text-offBlue group-hover:text-white'>${data.price}</p>
             </div>
 
             {/* Details Button */}
