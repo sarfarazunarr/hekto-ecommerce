@@ -12,13 +12,13 @@ const ProductBarDesign = ({data}: {data: ProductType}) => {
         <div className='w-full h-min my-5 flex flex-row items-center'>
             {/* Image */}
             <div className='w-1/3 lg:w-[330px] h-min bg-skyBlue flex justify-center items-center'>
-                <Image src={data.image} height={217} width={330} alt={data.title} />
+                <Image src={data.image_url} height={217} width={330} alt={data.name} />
             </div>
 
             {/* Details */}
             <div className='flex flex-col items-start justify-start gap-y-1 md:gap-y-4 bg-white p-5'>
                 <div className='flex justify-start items-center gap-3'>
-                <Link href={"/product/1"}><h1 className='text-navyBlue font-lato text-lg md:text-xl font-semibold'>{data.title}</h1></Link>
+                <Link href={`/product/${data.slug}`}><h1 className='text-navyBlue font-lato text-lg md:text-xl font-semibold'>{data.name}</h1></Link>
                     <div className='md:flex justify-center items-center gap-3 hidden'>
                         <div className='size-2 md:size-3 bg-[#05E6B7] rounded-full'></div>
                         <div className='size-2 md:size-3 bg-pink rounded-full'></div>

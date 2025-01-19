@@ -1,9 +1,22 @@
 import React from 'react'
 import Heading from './mini/Heading'
 import ProductCard, { ProductType } from './mini/ProductCard'
+import { client } from '@/sanity/lib/client'
 
-const LatestProducts = () => {
-    const products: ProductType[] = [{title: "Comfort Handy Craft", image:'/product5.png', price: 42.00, discountPrice: 65.00}, {title: "Comfort Handy Craft", image:'/product6.png', price: 42.00, discountPrice: 65.00}, {title: "Comfort Handy Craft", image:'/product7.png', price: 42.00, discountPrice: 65.00}, {title: "Comfort Handy Craft", image:'/product8.png', price: 42.00, discountPrice: 65.00}, {title: "Comfort Handy Craft", image:'/product9.png', price: 42.00, discountPrice: 65.00},{title: "Comfort Handy Craft", image:'/product10.png', price: 42.00, discountPrice: 65.00}]
+const LatestProducts = async () => {
+    const products: ProductType[] = await client.fetch(
+        `
+        *[_type=="product" && discountPercentage > 0][4..9]{
+            name,
+            description,
+            stockLevel,
+            discountPercentage,
+            price,
+            "image_url":image.asset->url,
+            "slug": slug.current
+          }
+          `
+      )
 
     return (
         <div className='w-full px-5 lg:px-40 py-10'>

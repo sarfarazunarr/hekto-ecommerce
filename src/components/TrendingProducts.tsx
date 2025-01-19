@@ -3,11 +3,36 @@ import ProductCard, { ProductType } from './mini/ProductCard'
 import Heading from './mini/Heading'
 import PromotedCategory from './mini/PromotedCategory'
 import ProductBar from './mini/ProductBar'
+import { client } from '@/sanity/lib/client'
 
-const TrendingProducts = () => {
-    const products: ProductType[] = [{title: "Cantilever chair", image:'/product11.png', price: 26.00, discountPrice: 49.00}, {title: "Cantilever chair", image:'/product12.png', price: 26.00, discountPrice: 49.00}, {title: "Cantilever chair", image:'/product13.png', price: 26.00, discountPrice: 49.00}, {title: "Cantilever chair", image:'/product14.png', price: 26.00, discountPrice: 49.00}]
+const TrendingProducts = async () => {
+    const products: ProductType[] = await client.fetch(
+        `
+        *[_type=="product" && discountPercentage > 0][9..12]{
+            name,
+            description,
+            stockLevel,
+            discountPercentage,
+            price,
+            "image_url":image.asset->url,
+            "slug": slug.current
+          }
+          `
+      )
 
-    const minproducts: ProductType[] = [{title: "Executive Seat Chair", price: 32.00, image: "/product15mini.png"}, {title: "Executive Seat Chair", price: 32.00, image: "/product16mini.png"}, {title: "Executive Seat Chair", price: 32.00, image: "/product17mini.png"}]
+    const minproducts: ProductType[] = await client.fetch(
+        `
+        *[_type=="product" && discountPercentage > 0] | order(price asc) [0..2] {
+            name,
+            description,
+            stockLevel,
+            discountPercentage,
+            price,
+            "image_url":image.asset->url,
+            "slug": slug.current
+          }
+          `
+      )
     return (
         <div className='w-full px-5 lg:px-40 py-10'>
             <Heading text='Trending Products' />
@@ -18,10 +43,10 @@ const TrendingProducts = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-8 gap-4">
                 <div className='md:col-span-3'>
-                    <PromotedCategory title='23% off in all products' btn='Shop Now' image={{src: '/promoted.png', width: 200, height: 200}} isActive={false} />
+                    <PromotedCategory title='Special Discount on Chairs' btn='Shop Now' image={{src: '/chair.png', width: 200, height: 200}} isActive={false} url='chair' />
                 </div>
                 <div className='md:col-span-3'>
-                    <PromotedCategory title='23% off in all products' image={{src: '/promoted2.png', width: 312, height: 173}} isActive={true} btn='View Collection' />
+                    <PromotedCategory title='Special Discount on Sofas' image={{src: '/sofa2.png', width: 200, height: 200}} isActive={true} btn='View Collection' url='sofa' />
                 </div>
                 <div className='flex md:col-span-6 lg:col-span-2 flex-col md:flex-row lg:flex-col gap-2'>
                     {minproducts.map((product, index) => (<ProductBar key={index} data={product} />))}

@@ -6,12 +6,14 @@ import { client } from '@/sanity/lib/client'
 const FeaturedProducts = async () => {
   const products: ProductType[] = await client.fetch(
     `
-      *[_type=="product"][0..4]{
+    *[_type=="product" && isFeaturedProduct][0..3]{
       name,
       description,
       stockLevel,
+      discountPercentage,
       price,
-      "image_url":image.asset->url
+      "image_url":image.asset->url,
+      "slug": slug.current
   }
       `
   )

@@ -7,9 +7,18 @@ import ProductBarDesign from "./ProductBarDesign"
 export interface ProductType{
     name: string,
     image: string,
-    image_url?: string,
+    image_url: string,
+    stockLevel: string,
     price: number,
-    discountPrice?:number
+    discountPercentage:number,
+    slug: string
+}
+
+export const finalPrice = (discountPercentage: number, price: number) => {
+    if(!discountPercentage) return price;
+    const amountToDeduct = (price / 100) * discountPercentage;
+    const finalAmount = price - amountToDeduct;
+    return finalAmount;
 }
 
 const ProductCard = ({ designType, showDots = false, data }: { designType: "SIMPLE 1/4" | "MEDIUM 1/3" | "SIMPLEST" | "CATEGORY PRODUCT" | "BAR", showDots?:boolean, data:ProductType}) => {
