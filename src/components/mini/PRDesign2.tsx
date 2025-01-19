@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import React from 'react'
-import { BsCart2 } from 'react-icons/bs'
 import { LiaSearchPlusSolid } from 'react-icons/lia'
 import { TbHeart } from 'react-icons/tb'
 import { finalPrice, ProductType } from './ProductCard'
 import Link from 'next/link'
+import CartBtns from './CartBtns'
+import WishListBtns from './WishListBtns'
 
 
 const PRDesign2 = ({data}: {data: ProductType}) => {
@@ -29,13 +30,10 @@ const PRDesign2 = ({data}: {data: ProductType}) => {
 
             {/* icons */}
             <div className='flex flex-col items-center gap-2 absolute bottom-16 left-2 z-10 opacity-0 group-hover:opacity-100'>
-                <div className='flex justify-center items-center bg-transparent text-[#1490b9] hover:bg-[#e6e6e7] hover:text-offNavyBlue cursor-pointer rounded-full size-8 p-1'>
-                    <BsCart2 size={25} />
-                </div>
+            <CartBtns varation={1} amount={amount} data={data}  />
 
-                <div className='flex justify-center items-center bg-transparent text-[#1490b9] hover:bg-[#e6e6e7] hover:text-offNavyBlue cursor-pointer rounded-full size-8 p-1'>
-                    <TbHeart size={25} />
-                </div>
+
+            <WishListBtns varation={1} data={data} />
 
                 <div className='flex justify-center items-center bg-transparent text-[#1490b9] hover:bg-[#e6e6e7] hover:text-offNavyBlue cursor-pointer rounded-full size-8 p-1'>
                     <LiaSearchPlusSolid size={25} />

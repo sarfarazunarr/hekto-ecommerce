@@ -17,7 +17,7 @@ const PRDesignSimple = ({ version = 1, data }: { version?: 1 | 2 , data:ProductT
             {/* Details */}
             <div className='flex items-start justify-between gap-2 bg-white  py-5'>
                 <div className={`"flex flex-col ${version == 2 ? 'items-end' : 'items-start'} gap-5"`}>
-                    <Link href={"/product/1"}><h1 className={`text-navyBlue font-lato font-semibold ${version == 2 && 'text-lg'}`}>{data.name}</h1></Link>
+                    <Link href={`/product/${data.slug}`}><h1 className={`text-navyBlue font-lato font-semibold ${version == 2 && 'text-lg'}`}>{data.name}</h1></Link>
                     <div className='flex justify-start items-center gap-2'>
                         <p className={`font-lato font-normal text-sm text-offBlue`}>${amount}</p>
                         {data.discountPercentage > 0 && version == 2 && <p className={`font-lato font-normal text-sm text-red line-through`}>${data.price}</p>}

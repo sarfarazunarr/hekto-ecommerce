@@ -1,17 +1,20 @@
 import Companies from '@/components/Companies'
 import MainHeader from '@/components/MainHeader'
+import CartBtns from '@/components/mini/CartBtns'
 import PRDesignSimple from '@/components/mini/PRDesignSimple'
 import { finalPrice, ProductType } from '@/components/mini/ProductCard'
+import WishListBtns from '@/components/mini/WishListBtns'
 import { client } from '@/sanity/lib/client'
 import Image from 'next/image'
 import React from 'react'
-import {  FaHeart, FaStar } from 'react-icons/fa'
+import {  FaStar } from 'react-icons/fa'
 
 
 const ProductDetail = async ({ params }: { params: { id: string } }) => {
 
 
     const product: ProductType = await client.fetch(`*[_type == "product" && slug.current == "${params.id}"][0]{
+        _id,
         name,
         description,
         stockLevel,
@@ -59,8 +62,8 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
 
                         <p className='text-gray-400 font-semibold font-josefin-sans'>{product.description}</p>
                         <div className='flex justify-start items-center'>
-                            <button className='px-6 py-2 text-navyBlue font-semibold bg-white rounded-md hover:bg-navyBlue hover:text-white'>Add to Cart</button>
-                            <button className='px-6 py-2 text-navyBlue font-semibold bg-white rounded-md hover:bg-pink hover:text-white'><FaHeart /></button>
+                            <CartBtns varation={2} amount={amount} data={product} />
+                            <WishListBtns varation={2} data={product} />
                         </div>
                         <div className='flex justify-start items-center gap-3'>
                             <p className='font-semibold text-navyBlue font-josefin-sans'>Category:</p>
@@ -85,7 +88,6 @@ const ProductDetail = async ({ params }: { params: { id: string } }) => {
                     <h3 className='text-2xl text-[#0D134E] font-semibold font-josefin-sans'>Video</h3>
                 </div>
                 <div className='py-5'>
-                    <h2 className='text-2xl text-[#0D134E] font-semibold font-josefin-sans py-3'>Description</h2>
                     <p className='text-gray-600 font-normal'>{product.description}</p>
 
                 </div>

@@ -7,6 +7,7 @@ const FeaturedProducts = async () => {
   const products: ProductType[] = await client.fetch(
     `
     *[_type=="product" && isFeaturedProduct][0..3]{
+      _id,
       name,
       description,
       stockLevel,

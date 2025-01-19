@@ -8,6 +8,7 @@ const Categories = async () => {
     `
     [
       *[_type=="product" && category == "Sofa"][0..1] {
+        _id,
         name,
         description,
         stockLevel,

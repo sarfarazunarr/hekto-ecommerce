@@ -19,6 +19,7 @@ const ShopList = () => {
     try {
       const query = searchparams.get('search');
       let queryString = `*[_type == "product"][0..${itemsPerPage - 1}]{
+        _id,
         name,
       description,
       stockLevel,

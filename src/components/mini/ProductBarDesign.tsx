@@ -6,6 +6,8 @@ import { LiaSearchPlusSolid } from 'react-icons/lia'
 import { TbHeart } from 'react-icons/tb'
 import { finalPrice, ProductType } from './ProductCard'
 import Link from 'next/link'
+import CartBtns from './CartBtns'
+import WishListBtns from './WishListBtns'
 
 const ProductBarDesign = ({data}: {data: ProductType}) => {
     const amount = finalPrice(data.discountPercentage, data.price);
@@ -40,13 +42,9 @@ const ProductBarDesign = ({data}: {data: ProductType}) => {
 
 
                 <div className='flex justify-start items-center gap-5'>
-                <div className='flex justify-center items-center bg-transparent text-navyBlue hover:bg-[#e6e6e7] hover:text-offNavyBlue cursor-pointer rounded-full size-8 p-1'>
-                    <BsCart2 size={25} />
-                </div>
+                <CartBtns varation={1} amount={amount} data={data}  />
 
-                <div className='flex justify-center items-center bg-transparent text-navyBlue hover:bg-[#e6e6e7] hover:text-offNavyBlue cursor-pointer rounded-full size-8 p-1'>
-                    <TbHeart size={25} />
-                </div>
+                <WishListBtns varation={1} data={data} />
 
                 <div className='flex justify-center items-center bg-transparent text-navyBlue hover:bg-[#e6e6e7] hover:text-offNavyBlue cursor-pointer rounded-full size-8 p-1'>
                     <LiaSearchPlusSolid size={25} />

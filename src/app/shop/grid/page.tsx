@@ -18,7 +18,7 @@ const ShopGrid = () => {
     setLoading(true)
     try {
       
-      const query = `*[_type == "product"][0..${itemsPerPage}]{name, description, stockLevel, discountPercentage, price, "image_url": image.asset->url, "slug": slug.current}`;
+      const query = `*[_type == "product"][0..${itemsPerPage}]{_id, name, description, stockLevel, discountPercentage, price, "image_url": image.asset->url, "slug": slug.current}`;
       const product = await client.fetch(query);
       setProducts(product);
       setLoading(false)

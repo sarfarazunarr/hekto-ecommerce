@@ -7,6 +7,7 @@ const LatestProducts = async () => {
     const products: ProductType[] = await client.fetch(
         `
         *[_type=="product" && discountPercentage > 0][4..9]{
+            _id,
             name,
             description,
             stockLevel,

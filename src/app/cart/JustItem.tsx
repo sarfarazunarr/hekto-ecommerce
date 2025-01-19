@@ -1,19 +1,20 @@
+import { ProductType } from '@/components/mini/ProductCard'
 import Image from 'next/image'
 import React from 'react'
 
-const JustItem = ({image}: {image: string}) => {
+const JustItem = ({data}: {data: ProductType}) => {
     return (
         <div className='flex flex-col md:flex-row justify-start items-center gap-5 p-1'>
-            <Image src={image} width={83} height={87} alt='image' className='rounded-md object-cover' />
+            <Image src={data.image_url} width={83} height={87} alt='image' className='rounded-md object-cover' />
             <div className='flex flex-col'>
-                <h2>Ut diam consequat</h2>
+                <h2>{data.name}</h2>
                 <div className='flex justify-start items-center'>
-                    <p className='text-gray-400 hidden md:block'>Color: </p>
-                    <span className='text-gray-500 font-semibold' title='color'>Brown</span>
+                    <p className='text-gray-400 hidden md:block'>Category: </p>
+                    <span className='text-gray-500 font-semibold' title='color'>{data.category}</span>
                 </div>
-                <div className='flex justify-start items-center'>
-                    <p className='text-gray-400 hidden md:block'>Size: </p><span className='text-gray-500 font-semibold' title='size'>XL</span>
-                </div>
+                {data.discountPercentage > 0 && <div className='flex justify-start items-center'>
+                    <p className='text-gray-400 hidden md:block'>Discount: </p><span className='text-gray-500 font-semibold' title='size'>{data.discountPercentage}%</span>
+                </div>}
             </div>
         </div>
     )

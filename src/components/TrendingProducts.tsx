@@ -9,6 +9,7 @@ const TrendingProducts = async () => {
     const products: ProductType[] = await client.fetch(
         `
         *[_type=="product" && discountPercentage > 0][9..12]{
+            _id,
             name,
             description,
             stockLevel,
