@@ -4,10 +4,11 @@ import { BsCart2 } from 'react-icons/bs'
 import { FaStar } from 'react-icons/fa'
 import { LiaSearchPlusSolid } from 'react-icons/lia'
 import { TbHeart } from 'react-icons/tb'
-import { ProductType } from './ProductCard'
+import { finalPrice, ProductType } from './ProductCard'
 import Link from 'next/link'
 
 const ProductBarDesign = ({data}: {data: ProductType}) => {
+    const amount = finalPrice(data.discountPercentage, data.price);
     return (
         <div className='w-full h-min my-5 flex flex-row items-center'>
             {/* Image */}
@@ -26,7 +27,7 @@ const ProductBarDesign = ({data}: {data: ProductType}) => {
                     </div>
                 </div>
                 <div className="flex justify-start items-center gap-4">
-                    <p className='font-josefin-sans text-left text-offBlue font-medium'>${data.price}  <span className='text-red line-through'>${data.discountPrice}</span></p>
+                    <p className='font-josefin-sans text-left text-offBlue font-medium'>${amount}  <span className='text-red line-through'>${data.price}</span></p>
                     <div className='flex justify-start gap-1 text-[#FFC416] text-sm'>
                         <FaStar />
                         <FaStar />
@@ -35,7 +36,7 @@ const ProductBarDesign = ({data}: {data: ProductType}) => {
                         <FaStar className='text-gray-400' />
                     </div>
                 </div>
-                <p className='font-lato text-gray-400 w-[500px] hidden md:block'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna in est adipiscing in phasellus non in justo.</p>
+                <p className='font-lato text-gray-400 w-[500px] hidden md:block'>{data.description}</p>
 
 
                 <div className='flex justify-start items-center gap-5'>

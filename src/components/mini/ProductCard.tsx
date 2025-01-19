@@ -6,12 +6,14 @@ import ProductBarDesign from "./ProductBarDesign"
 
 export interface ProductType{
     name: string,
+    description: string,
     image: string,
     image_url: string,
     stockLevel: string,
     price: number,
     discountPercentage:number,
-    slug: string
+    slug: string,
+    category: string
 }
 
 export const finalPrice = (discountPercentage: number, price: number) => {

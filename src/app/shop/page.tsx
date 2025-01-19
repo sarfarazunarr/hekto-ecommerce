@@ -1,95 +1,118 @@
+"use client";
 import Companies from '@/components/Companies'
 import MainHeader from '@/components/MainHeader'
 import ProductCard, { ProductType } from '@/components/mini/ProductCard'
 import StoreDatahandler from '@/components/mini/StoreDatahandler'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { client } from '@/sanity/lib/client';
+import Loader from '@/components/mini/Loader';
 
-const ShopGrid = () => {
-  const products: ProductType[] = [
-    {
-      title: "sit amet consectetur",
-      price: 31.00,
-      discountPrice: 52.00,
-      image: "/product18.png"
-    },
-    {
-      title: "vel elit eusim",
-      price: 26.00,
-      discountPrice: 42.00,
-      image: "/product19.png"
-    },
-    {
-      title: "sit amet consectetur",
-      price: 31.00,
-      discountPrice: 52.00,
-      image: "/product20.png"
-    },
-    {
-      title: "sed do eiusmod",
-      price: 23.00,
-      discountPrice: 39.00,
-      image: "/product21.png"
-    },
-    {
-      title: "tempor incididunt ut",
-      price: 28.00,
-      discountPrice: 49.00,
-      image: "/product22.png"
-    },
-    {
-      title: "labore et dolore",
-      price: 32.00,
-      discountPrice: 55.00,
-      image: "/product23.png"
-    },
-    {
-      title: "magna aliqua ut",
-      price: 29.00,
-      discountPrice: 53.00,
-      image: "/product24.png"
-    },
-    {
-      title: "enim ad minim",
-      price: 22.00,
-      discountPrice: 37.00,
-      image: "/product25.png"
-    },
-    {
-      title: "veniam quis nostrud",
-      price: 30.00,
-      discountPrice: 57.00,
-      image: "/product26.png"
-    },
-    {
-      title: "exercitation ullamco laboris",
-      price: 24.00,
-      discountPrice: 40.00,
-      image: "/product27.png"
-    },
-    {
-      title: "nisi ut aliquip",
-      price: 27.00,
-      discountPrice: 48.00,
-      image: "/product28.png"
-    },
-    {
-      title: "ex ea commodo",
-      price: 25.00,
-      discountPrice: 44.00,
-      image: "/product29.png"
-    }
-  ]
-  return (
-    <>
-      <MainHeader title='Shop Grid Default' prev='Home . Pages . ' current='Shop Grid Default' />
-       <StoreDatahandler />
+const Sidebar = () => {
+    const [isActive, setIsActive] = useState(false);
 
-      <div className="px-5 md:px-10 lg:px-40 grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-10 py-10">
-        {products.map((product, index) => (<ProductCard key={index} data={product} designType='SIMPLEST' />))}
-      </div>
-        <Companies />
-    </>
-  )
+
+    const [products, setProducts] = useState<ProductType[]>();
+    const [category, setCategory] = useState('');
+    const [offer, setOffer] = useState(0);
+    const [price, setPrice] = useState(0);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [loading, setLoading] = useState(false);
+
+    const getData = async () => {
+        setLoading(true)
+        try {
+            const query = `*[_type == "product"${category ? ` && category == "${category}"` : ''}${offer > 0 ? ` && discountPercentage <= ${offer}` : ''}${price > 0 ? ` && price <= '${price}'` : ''}][0..${itemsPerPage}]{name, description, stockLevel, discountPercentage, price, "image_url": image.asset->url, "slug": slug.current}`;
+            const product = await client.fetch(query);
+            setProducts(product);
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        getData();
+    }, [category, offer, itemsPerPage]);
+    return (
+        <div>
+
+            <MainHeader title='Shop Left Sidebar' prev='Home . Pages . Shop . ' current='Shop Left Sidebar' />
+
+            <StoreDatahandler itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} />
+            <div className='flex md:hidden p-5 justify-start items-center gap-1'>
+                <p className='text-lg font-lato text-navyBlue font-normal'>Filters</p>
+                <div className='flex justify-end items-center px-5'>
+                    <div className={`w-8 md:hidden flex flex-col justify-center gap-1 ${isActive ? 'cross' : ''}`} onClick={() => setIsActive(!isActive)}>
+                        <div className="w-full h-1 bg-gray-700 transition-transform duration-500 ease-in-out"></div>
+                        <div className="w-full h-1 bg-gray-700 transition-transform duration-500 ease-in-out"></div>
+                        <div className="w-full h-1 bg-gray-700 transition-transform duration-500 ease-in-out"></div>
+                    </div>
+                </div>
+            </div>
+            <div className='px-5 lg:px-40 w-full grid md:grid-cols-4'>
+                <div className={`flex ${isActive ? 'block md:block' : 'hidden md:block'} bg-white flex-col gap-3 px-3`}>
+
+                    <div className='flex flex-col gap-3 py-2'>
+                        <h3 className='font-bold underline pb-2 font-josefin-sans text-offBlue text-xl'>Categories</h3>
+                        <div className='flex flex-col gap-1'>
+                            <select value={category} className='px-3 mr-2 py-2 rounded-sm border border-gray-300 text-black placeholder:text-gray-200' onChange={(e) => setCategory(e.target.value)}>
+                                <option defaultValue={""} selected disabled>Select Category</option>
+                                <option value={"Chair"}>Chair</option>
+                                <option value={"Sofa"}>Sofa</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className='flex flex-col gap-3 py-2'>
+                        <h3 className='font-bold underline pb-2 font-josefin-sans text-offBlue text-xl'>Discount Offer</h3>
+                        <div className='flex flex-col gap-1'>
+                            <select value={offer} className='px-3 mr-2 py-2 rounded-sm border border-gray-300 text-black placeholder:text-gray-200' onChange={(e) => setOffer(parseInt(e.target.value, 10))}>
+                                <option value={5}>5%</option>
+                                <option value={10}>10%</option>
+                                <option value={15}>15%</option>
+                                <option value={20}>20%</option>
+                                <option value={25}>25%</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className='flex flex-col gap-3 py-2'>
+                        <h3 className='font-bold underline pb-2 font-josefin-sans text-offBlue text-xl'>Price Filter</h3>
+                        <div className='flex flex-col gap-1'>
+                            <input type="number" value={price} className='px-3 mr-2 py-2 rounded-sm border border-gray-300 text-black placeholder:text-gray-200' placeholder='$10 - $20000' onChange={(e) => setPrice(parseInt(e.target.value, 10))} />
+                            <button className='px-3 mr-2 py-2 rounded-sm border border-gray-300 text-white bg-black  hover:bg-gray-800' onClick={() => getData()}>Filter with Price</button>
+                        </div>
+                    </div>
+
+                </div>
+                <div className=" py-10 col-span-full lg:col-span-3">
+                    {loading && (
+                        <Loader />
+                    )}
+                    {products?.length == 0 && (
+                        <div className='w-full h-screen flex justify-center flex-col items-center'>
+                            <h3 className='text-3xl font-bold text-center text-gray-700 pt-10'>No Products Available!</h3>
+                            <button className='px-4 py-2 rounded-md bg-offBlue text-white hover:bg-black' onClick={() => {
+                                setCategory('');
+                                setPrice(0);
+                                setOffer(0);
+                                setItemsPerPage(10);
+                            }}>Reset Filters</button>
+                        </div>
+                    )}
+                    {products?.map((product, index) => (
+                        <ProductCard key={index} designType='BAR' data={product} showDots={true} />
+                    ))}
+
+
+                </div>
+            </div>
+
+            <Companies />
+
+        </div>
+    )
 }
 
-export default ShopGrid
+export default Sidebar

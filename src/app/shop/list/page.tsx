@@ -8,8 +8,7 @@ import { client } from '@/sanity/lib/client';
 import React, { useEffect, useState } from 'react'
 
 
-
-const ShopGrid = () => {
+const ShopList = () => {
   const [products, setProducts] = useState<ProductType[]>();
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [loading, setLoading] = useState(false);
@@ -32,7 +31,8 @@ const ShopGrid = () => {
   }, [itemsPerPage]);
   return (
     <>
-      <MainHeader title='Shop Grid Default' prev='Home . Pages . ' current='Shop Grid Default' />
+      <MainHeader title='Shop List' prev='Home . Pages . Shop . ' current='Shop List' />
+
       <StoreDatahandler itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} />
       <div className="px-5 md:px-10 lg:px-40 w-full py-10">
         {loading && (
@@ -43,11 +43,12 @@ const ShopGrid = () => {
             <h3 className='text-3xl font-bold text-center text-gray-700 pt-10'>No Products Available!</h3>
           </div>
         )}
-        {products && products.map((product, index) => (<ProductCard key={index} data={product} designType='SIMPLEST' />))}
+        {products && products.map((product, index) => (<ProductCard key={index} data={product} designType='BAR' showDots={true} />))}
+
       </div>
-        <Companies />
+      <Companies />
     </>
   )
 }
 
-export default ShopGrid
+export default ShopList
