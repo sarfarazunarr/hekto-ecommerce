@@ -12,12 +12,12 @@ const PRDesign1 = ({data}: {data: ProductType}) => {
 
             {/* Image */}
             <div className='w-full h-2/3 bg-skyBlue flex justify-center items-center'>
-                <Image src={data.image ? data.image : '/product1.png'} height={170} width={170} alt='product' />
+                <Image src={data.image_url ? data.image_url : '/product1.png'} height={170} width={170} alt='product' />
             </div>
 
             {/* Details */}
             <div className='flex flex-col items-center gap-2 bg-white group-hover:bg-blue  py-2'>
-            <Link href={"/product/1"}><h1 className='text-pink group-hover:text-white font-lato text-lg font-semibold'>{data.title}</h1></Link>
+            <Link href={"/product/1"}><h1 className='text-pink group-hover:text-white font-lato text-lg font-semibold'>{data.name}</h1></Link>
                 <div className='flex justify-center items-center gap-3'>
                     <div className='w-4 h-1 bg-[#05E6B7] rounded-full'></div>
                     <div className='w-4 h-1 bg-pink rounded-full'></div>

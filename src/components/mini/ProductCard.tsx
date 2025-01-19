@@ -5,8 +5,9 @@ import PRDesign3 from "./PRDesign3"
 import ProductBarDesign from "./ProductBarDesign"
 
 export interface ProductType{
-    title: string,
+    name: string,
     image: string,
+    image_url?: string,
     price: number,
     discountPrice?:number
 }
