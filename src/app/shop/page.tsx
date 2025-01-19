@@ -37,7 +37,7 @@ const Sidebar = () => {
     return (
         <div>
 
-            <MainHeader title='Shop Left Sidebar' prev='Home . Pages . Shop . ' current='Shop Left Sidebar' />
+            <MainHeader title='Shop' prev='Home . Pages . Shop . ' current='Shop' />
 
             <StoreDatahandler itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} />
             <div className='flex md:hidden p-5 justify-start items-center gap-1'>

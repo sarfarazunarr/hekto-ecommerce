@@ -5,6 +5,7 @@ import Loader from '@/components/mini/Loader';
 import ProductCard, { ProductType } from '@/components/mini/ProductCard'
 import StoreDatahandler from '@/components/mini/StoreDatahandler'
 import { client } from '@/sanity/lib/client';
+import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 
 
@@ -12,13 +13,38 @@ const ShopList = () => {
   const [products, setProducts] = useState<ProductType[]>();
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [loading, setLoading] = useState(false);
-
+  const searchparams = useSearchParams();
   const getData = async () => {
     setLoading(true)
     try {
-      const query = `*[_type == "product"][0..${itemsPerPage}]{name, description, stockLevel, discountPercentage, price, "image_url": image.asset->url, "slug": slug.current}`;
-      const product = await client.fetch(query);
-      setProducts(product);
+      const query = searchparams.get('search');
+      let queryString = `*[_type == "product"][0..${itemsPerPage - 1}]{
+        name,
+      description,
+      stockLevel,
+      discountPercentage,
+      price,
+      "image_url":image.asset->url,
+      "slug": slug.current
+        }`
+
+      if(query){
+        queryString = `*[(_type == "product")
+      && (pt::text(name) match "${query}*" || description match "${query}*")] | score(pt::text(name) match "${query}*", boost(description match "${query}*", 3))[0..${itemsPerPage - 1}]
+      {
+        name,
+      description,
+      stockLevel,
+      discountPercentage,
+      price,
+      "image_url":image.asset->url,
+      "slug": slug.current,
+        _score
+        }`
+      }
+      
+      const productsdata = await client.fetch(queryString);
+      setProducts(productsdata);
       setLoading(false)
     } catch (error) {
       setLoading(false)
@@ -28,18 +54,17 @@ const ShopList = () => {
 
   useEffect(() => {
     getData();
-  }, [itemsPerPage]);
+  }, [itemsPerPage, searchparams]);
   return (
     <>
-      <MainHeader title='Shop List' prev='Home . Pages . Shop . ' current='Shop List' />
-
+      <MainHeader title='Search Results' prev='Home . Pages . ' current={`Search Results of: ${searchparams.get('search')}`} />
       <StoreDatahandler itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} />
       <div className="px-5 md:px-10 lg:px-40 w-full py-10">
         {loading && (
           <Loader />
         )}
         {(!products || products?.length == 0) && (
-          <div className='w-full h-screen flex justify-center flex-col items-center'>
+          <div className='w-full py-10 flex justify-center flex-col items-center'>
             <h3 className='text-3xl font-bold text-center text-gray-700 pt-10'>No Products Available!</h3>
           </div>
         )}

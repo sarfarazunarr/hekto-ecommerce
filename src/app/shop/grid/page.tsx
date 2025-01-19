@@ -17,6 +17,7 @@ const ShopGrid = () => {
   const getData = async () => {
     setLoading(true)
     try {
+      
       const query = `*[_type == "product"][0..${itemsPerPage}]{name, description, stockLevel, discountPercentage, price, "image_url": image.asset->url, "slug": slug.current}`;
       const product = await client.fetch(query);
       setProducts(product);
@@ -38,14 +39,16 @@ const ShopGrid = () => {
         {loading && (
           <Loader />
         )}
-        {(!products || products?.length == 0) && (
-          <div className='w-full h-screen flex justify-center flex-col items-center'>
-            <h3 className='text-3xl font-bold text-center text-gray-700 pt-10'>No Products Available!</h3>
-          </div>
-        )}
+      </div>
+      {(!products || products?.length == 0) && (
+        <div className='w-full h-screen flex justify-center flex-col items-center'>
+          <h3 className='text-3xl font-bold text-center text-gray-700 pt-10'>No Products Available!</h3>
+        </div>
+      )}
+      <div className={"grid grid-cols-4 px-20 gap-4"}>
         {products && products.map((product, index) => (<ProductCard key={index} data={product} designType='SIMPLEST' />))}
       </div>
-        <Companies />
+      <Companies />
     </>
   )
 }

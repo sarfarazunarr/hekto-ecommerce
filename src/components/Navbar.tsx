@@ -3,9 +3,11 @@ import React, { useState } from 'react'
 import Topbar from './mini/Topbar'
 import Link from 'next/link'
 import { FiSearch } from 'react-icons/fi'
-
+import { useRouter } from 'next/navigation';
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState('');
+  const router = useRouter();
   return (
     <div className='w-full'>
       {/* Topbar */}
@@ -38,8 +40,8 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {open && <div className='z-10 absolute top-40 right-0 bg-navyBlue backdrop:blur-md w-full h-auto flex flex-col items-center justify-start p-10 gap-3'>
           <div className='w-80 h-10 bg-skyBlue border-gray-200 border grid grid-cols-6 items-center my-4'>
-            <input type="text" className='p-3 font-josefin-sans font-semibold text-offNavyBlue border-none outline-none placeholder:text-gray-300 col-span-5' placeholder='Search' />
-            <button className='bg-pink w-full h-full flex justify-center items-center'><FiSearch size={20} color='white' /></button>
+            <input type="text" value={search} className='p-3 font-josefin-sans font-semibold text-offNavyBlue border-none outline-none placeholder:text-gray-300 col-span-5' placeholder='Search' onChange={(e) => setSearch(e.target.value)} />
+            <button className='bg-pink w-full h-full flex justify-center items-center'  onClick={() => router.push(`/shop/list?search=${search}`)} disabled={search.length <= 1}><FiSearch size={20} color='white' /></button>
           </div>
           <Link href={"/"} className='font-lato text-white hover:underline hover:text-pink'>Home</Link>
           <Link href={"/shop/grid"} className='font-lato text-white hover:underline hover:text-pink'>Products</Link>
@@ -52,8 +54,8 @@ const Navbar = () => {
 
         <div className='hidden md:col-span-5 lg:col-span-2 md:flex justify-end items-center'>
           <div className='md:w-full lg:w-80 h-10 bg-skyBlue border-gray-200 border grid grid-cols-6 items-center'>
-            <input type="text" className='p-3 font-josefin-sans font-semibold text-offNavyBlue border-none outline-none placeholder:text-gray-300 col-span-5' placeholder='Search' />
-            <button className='bg-pink w-full h-full flex justify-center items-center'><FiSearch size={20} color='white' /></button>
+            <input type="text" value={search} className='p-3 font-josefin-sans font-semibold text-offNavyBlue border-none outline-none placeholder:text-gray-300 col-span-5' placeholder='Search' onChange={(e) => setSearch(e.target.value)} />
+            <button className='bg-pink w-full h-full flex justify-center items-center' onClick={() => router.push(`/shop/list?search=${search}`)} disabled={search.length <= 1}><FiSearch size={20} color='white' /></button>
           </div>
         </div>
       </nav>

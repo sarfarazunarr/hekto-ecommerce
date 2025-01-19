@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import { FaList } from 'react-icons/fa'
 import { IoGrid } from 'react-icons/io5'
+import { GoSidebarCollapse } from "react-icons/go";
 
 const StoreDatahandler = ({ itemsPerPage, setItemsPerPage }: { itemsPerPage: number, setItemsPerPage: (value: number) => void }) => {
 
@@ -27,15 +28,16 @@ const StoreDatahandler = ({ itemsPerPage, setItemsPerPage }: { itemsPerPage: num
                           }} />
                 </div>
                 <div className='flex items-center justify-start gap-2'>
-                    <label htmlFor="perpage" className='text-offBlue font-lato font-medium'>Sort By: </label>
+                    {/* <label htmlFor="perpage" className='text-offBlue font-lato font-medium'>Sort By: </label>
                     <select className='h-7 rounded-sm border border-gray-300 focus:border-navyBlue outline-none text-gray-500'>
                         <option value="best">Best Match</option>
                         <option value="all">All Results</option>
-                    </select>
+                    </select> */}
                 </div>
                 <div className='flex items-center justify-start gap-2'>
-                    <label htmlFor="perpage" className='text-offBlue font-lato flex justify-start items-center gap-3'>View: <Link href={"/shop"}><IoGrid size={15} className='text-navyBlue' /></Link>
-                        <Link href={"/shop/grid"}><FaList size={15} className='text-navyBlue' /></Link>
+                    <label htmlFor="perpage" className='text-offBlue font-lato flex justify-start items-center gap-3'>View: <Link href={"/shop/grid"}><IoGrid size={15} className='text-navyBlue' /></Link>
+                        <Link href={"/shop/list"}><FaList size={15} className='text-navyBlue' /></Link>
+                        <Link href={"/shop"}><GoSidebarCollapse   size={15} className='text-navyBlue' /></Link>
                     </label>
                     <input type="text" className='w-14 h-7 rounded-sm border border-gray-300 focus:border-navyBlue outline-none text-gray-700 px-2' />
                 </div>
