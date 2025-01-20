@@ -1,8 +1,8 @@
 import MainHeader from '@/components/MainHeader'
 import Heading from '@/components/mini/Heading'
 import React from 'react'
-import Input from '../payment/Input'
 import Companies from '@/components/Companies'
+import Link from 'next/link'
 
 const FAQs = () => {
     return (
@@ -32,15 +32,10 @@ const FAQs = () => {
                     </div>
                 </div>
                 <div className='flex flex-col justify-start items-start gap-4 bg-[#F8F8FD] p-2 lg:p-14'>
-                    <h2 className={`py-2 text-2xl font-bold font-josefin-sans text-center text-navyBlue`}>
-                        Ask a Question
-                    </h2>
-                    <div className='py-5 w-full grid grid-cols-2 gap-5'>
-                        <Input placeholder='Your Name' span='2' v={2} />
-                        <Input placeholder='Subject' span='2' v={2} />
-                        <textarea name="message" id="message" rows={5} className='bg-transparent text-gray-700 placeholder:text-[#C5CBE3] border border-[#C5CBE3] outline-none px-3 py-2 col-span-2 w-full' placeholder='Type Your Message'></textarea>
-                    </div>
-                    <button className='bg-pink rounded-sm font-josefin-sans px-8 text-white py-3'>Send Message</button>
+                    <Link href={"/contact"}><h2 className={`py-2 text-2xl font-bold font-josefin-sans text-center text-navyBlue`}>
+                        Visit to Contact Us
+                    </h2></Link>
+                    
                 </div>
             </div>
             <Companies />

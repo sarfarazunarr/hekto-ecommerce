@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import { finalPrice, ProductType } from './ProductCard'
+import { ProductType } from './ProductCard'
 import Link from 'next/link';
 
 const ProductBar = ({data}: {data: ProductType}) => {

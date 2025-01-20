@@ -1,7 +1,5 @@
 "use client";
-import React, { useState } from 'react'
-import { BsCart2 } from 'react-icons/bs'
-import useCartStore from '@/store/cartStore'
+import React from 'react'
 import { ProductType } from './ProductCard';
 import { toast } from 'react-toastify';
 import useWishlistStore from '@/store/wishlistStore';

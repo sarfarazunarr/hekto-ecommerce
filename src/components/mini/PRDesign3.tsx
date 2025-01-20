@@ -1,8 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import { BsCart2 } from 'react-icons/bs'
 import { LiaSearchPlusSolid } from 'react-icons/lia'
-import { TbHeart } from 'react-icons/tb'
 import { finalPrice, ProductType } from './ProductCard'
 import Link from 'next/link'
 import CartBtns from './CartBtns'

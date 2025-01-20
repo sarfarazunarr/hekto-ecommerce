@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { BiHeart, BiUser } from 'react-icons/bi'
-import { FiPhoneCall, FiShoppingCart } from 'react-icons/fi'
+import { FiPhoneCall } from 'react-icons/fi'
 import { MdOutlineMail } from 'react-icons/md'
 import CartBtns from './CartBtns'
 

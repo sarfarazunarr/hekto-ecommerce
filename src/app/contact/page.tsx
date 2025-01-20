@@ -1,13 +1,24 @@
+"use client";
 import MainHeader from '@/components/MainHeader'
 import Heading from '@/components/mini/Heading'
-import React from 'react'
+import React, { useState } from 'react'
 import { FaCircle } from 'react-icons/fa'
 import { MdContacts, MdLocationCity, MdSupportAgent } from 'react-icons/md'
 import { TbTruckDelivery } from 'react-icons/tb'
 import Input from '../payment/Input'
 import Image from 'next/image'
+import { toast } from 'react-toastify';
 
 const Contact = () => {
+    const [data, setData] = useState({
+        name:"", email: "", subject: "", message: ""
+    })
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setData({ ...data, [e.target.name]: e.target.value})
+    }
+    const handleMessage = () => {
+        toast.success("Message Sent Sucessfully!", {autoClose: 2000});
+    };
     return (
         <div className='w-full'>
             <MainHeader title='Contact Us' prev='Home . Pages . ' current='Contact Us' />
@@ -69,12 +80,12 @@ const Contact = () => {
                     <Heading text='Get in Touch' />
                     <p className='font-lato text-[#8A8FB9]'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis neque ultrices tristique amet erat vitae eget dolor los vitae lobortis quis bibendum quam.</p>
                     <div className='py-5 grid grid-cols-2 gap-5'>
-                    <Input placeholder='Your Name' v={2} />
-                    <Input placeholder='Your Email' v={2} />
-                    <Input placeholder='Subject' span='2' v={2} />
-                    <textarea name="message" id="message" rows={5} className='bg-transparent text-gray-700 placeholder:text-[#C5CBE3] border border-[#C5CBE3] outline-none px-3 py-2 col-span-2 w-full' placeholder='Type Your Message'></textarea>
+                    <Input placeholder='Your Name' name='name' onchange={onChange} value={data.name} v={2} />
+                    <Input placeholder='Your Email' v={2} name='email' onchange={onChange} value={data.email} />
+                    <Input placeholder='Subject' span='2' v={2} name='subject' onchange={onChange} value={data.subject} />
+                    <textarea name="message" id="message" rows={5} className='bg-transparent text-gray-700 placeholder:text-[#C5CBE3] border border-[#C5CBE3] outline-none px-3 py-2 col-span-2 w-full' placeholder='Type Your Message' onChange={()=> onChange} value={data.message}></textarea>
                     </div>
-                    <button className='bg-pink rounded-sm font-josefin-sans px-8 text-white py-3'>Send Message</button>
+                    <button className='bg-pink rounded-sm font-josefin-sans px-8 text-white py-3' onClick={() =>  handleMessage()}>Send Message</button>
                 </div>
                 <Image src={"/contact.png"} width={725} height={695} alt='contact' className=' hidden lg:w-full' />
             </div>

@@ -9,8 +9,24 @@ import Navigator from './Navigator'
 import RelatedPostBar from './RelatedPostBar'
 import Comment from './Comment'
 import Companies from '@/components/Companies'
+import { client } from '@/sanity/lib/client'
+import { ProductType } from '@/components/mini/ProductCard'
 
-const SingleBlog = () => {
+const SingleBlog = async () => {
+    const products: ProductType[] = await client.fetch(
+        `
+        *[_type=="product" && isFeaturedProduct][0..3]{
+          _id,
+          name,
+          description,
+          stockLevel,
+          discountPercentage,
+          price,
+          "image_url":image.asset->url,
+          "slug": slug.current
+      }
+          `
+      )
     return (
         <div className='w-full'>
             <MainHeader title='Single Blog' prev='Home . Pages . ' current='Single Blog' />
@@ -46,10 +62,10 @@ const SingleBlog = () => {
                             <p className='py-4'>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur ullam necessitatibus sapiente ducimus labore tenetur quasi harum, sed rem quidem perspiciatis exercitationem in ab aliquid? Praesentium totam beatae molestiae consequuntur.</p>
 
                             <div className='grid md:grid-cols-3 lg:grid-cols-4 items-center gap-1'>
-                                <PRDesignSimple image='/image2.png' version={2} />
-                                <PRDesignSimple image='/image3.png' version={2} />
-                                <PRDesignSimple image='/image5.png' version={2} />
-                                <PRDesignSimple image='/image6.png' version={2} />
+                                {products.map((product, index) => (
+
+                                <PRDesignSimple key={index} data={product} version={2} />
+                                ))}
                             </div>
 
                             <p className='py-2'>

@@ -1,4 +1,4 @@
-import { defineField } from "sanity";
+import { defineField, Rule } from "sanity";
 
 const user = defineField({
     name: 'user',
@@ -9,7 +9,7 @@ const user = defineField({
             name: 'first_name',
             type: 'string',
             title: 'First Name',
-            validation: (Rule: any) => Rule.required().error('Name is required'),
+            validation: (Rule: Rule) => Rule.required().error('Name is required'),
         },
         {
             name: 'last_name',
@@ -20,7 +20,7 @@ const user = defineField({
             name: 'email',
             type: 'string',
             title: 'Email',
-            validation: (Rule: any) => Rule.email(),
+            validation: (Rule: Rule) => Rule.email(),
         },
         {
             name: 'mobileNumber',

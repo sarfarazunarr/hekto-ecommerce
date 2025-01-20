@@ -23,7 +23,7 @@ const CheckoutForm = () => {
         products: [], first_name: "", last_name: "", address: "", address2: "", city: "", country: "", postal_code: "", password: "", payment_method: "", totalAmount: 0, email: "", mobileNumber: ""
     })
     const totalAmount = calculateAmount(cart);
-    const onChange = (e: any) => {
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setOrderData({ ...orderData, [e.target.name]: e.target.value, products: cart, payment_method: paymentMethod, totalAmount: totalAmount })
     }
     const handleOrder = async () => {
@@ -35,9 +35,9 @@ const CheckoutForm = () => {
                 const data = await res.json();
                 toast.update(toastid, {render: "Order Placed Successfully!", type: "success", autoClose: 2000, isLoading: false });
                 console.log(data);
-                // setTimeout(() => {
-                //     router.push(`/order-completed?id=${data.id}`);
-                // }, 2500)
+                setTimeout(() => {
+                    router.push(`/order-completed?id=${data.id}`);
+                }, 2500)
             }
         } catch (error) {
             toast.update(toastid, {render: "Failed to Place Order", type: "error", autoClose: 2000, isLoading: false });

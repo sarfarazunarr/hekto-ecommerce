@@ -3,53 +3,26 @@ import Image from 'next/image';
 import { BiSearch } from 'react-icons/bi';
 import { FaFacebookF, FaTwitter } from 'react-icons/fa';
 import { FaInstagram } from 'react-icons/fa6';
-import { ProductType } from '@/components/mini/ProductCard';
+import { finalPrice, ProductType } from '@/components/mini/ProductCard';
+import { client } from '@/sanity/lib/client';
 
-const Sidebar = () => {
-    const products: ProductType[] = [
-        {
-            title: "sit amet consectetur",
-            price: 31.00,
-            discountPrice: 52.00,
-            image: "/product31.png"
-          },
-          {
-            title: "vel elit eusim",
-            price: 26.00,
-            discountPrice: 42.00,
-            image: "/product32.png"
-          },
-          {
-            title: "sit amet consectetur",
-            price: 31.00,
-            discountPrice: 52.00,
-            image: "/product33.png"
-          },
-          {
-            title: "sed do eiusmod",
-            price: 23.00,
-            discountPrice: 39.00,
-            image: "/product34.png"
-          },
-          {
-            title: "tempor incididunt ut",
-            price: 28.00,
-            discountPrice: 49.00,
-            image: "/product35.png"
-          },
-          {
-            title: "labore et dolore",
-            price: 32.00,
-            discountPrice: 55.00,
-            image: "/product36.png"
-          },
-          {
-            title: "magna aliqua ut",
-            price: 29.00,
-            discountPrice: 53.00,
-            image: "/product37.png"
-          },
-        ]
+const Sidebar = async () => {
+   
+    const products: ProductType[] = await client.fetch(
+        `
+        *[_type=="product" && discount > 0][4..11]{
+          _id,
+          name,
+          description,
+          stockLevel,
+          discountPercentage,
+          price,
+          "image_url":image.asset->url,
+          "slug": slug.current
+      }
+          `
+      )
+
   return (
     <div className='flex flex-col gap-5 p-5 md:col-span-3 lg:col-span-2'>
     <div>
@@ -90,13 +63,14 @@ const Sidebar = () => {
     <div>
         <h2 className='font-semibold font-josefin-sans text-navyBlue text-2xl py-4'>Sale Product</h2>
         <div className='flex flex-col gap-5'>
-            {products.slice(0, 3).map((product, index) => {
+            {products.slice(0,3).map((product, index) => {
+                const amount = finalPrice(product.discountPercentage, product.price);
                 return (
                     <div key={index} className='flex justify-start items-center w-full gap-4'>
-                        <Image src={product.image} width={70} height={51} alt='product' />
+                        <Image src={product.image_url} width={70} height={51} alt={product.name} />
                         <div className='flex flex-col'>
-                            <h3 className='font-josefin-sans text-sm text-navyBlue'>{product.title}</h3>
-                            <p className='text-gray-400 font-lato text-[11px]'>${product.price}</p>
+                            <h3 className='font-josefin-sans text-sm text-navyBlue'>{product.name}</h3>
+                            <p className='text-gray-400 font-lato text-[11px]'>${amount}</p>
                         </div>
                     </div>
                 )
@@ -106,13 +80,15 @@ const Sidebar = () => {
     <div>
         <h2 className='font-semibold font-josefin-sans text-navyBlue text-2xl py-4'>Offer Product</h2>
         <div className='grid grid-cols-2 gap-5'>
-            {products.slice(3,7).map((product, index) => {
+            {products.slice(4,8).map((product, index) => {
+                const amount = finalPrice(product.discountPercentage, product.price);
+
                 return (
                     <div key={index} className='flex flex-col justify-start items-center gap-2'>
-                        <Image src={product.image} width={70} height={51} alt='product' />
+                        <Image src={product.image_url} width={70} height={51} alt={product.name} />  
                         <div className='flex flex-col'>
-                            <h3 className='font-josefin-sans text-navyBlue'>{product.title}</h3>
-                            <p className='text-gray-400 font-lato text-sm text-center'>${product.price} - ${product.discountPrice}</p>
+                            <h3 className='font-josefin-sans text-navyBlue'>{product.name}</h3>
+                            <p className='text-gray-400 font-lato text-sm text-center'>${amount}</p>
                         </div>
                     </div>
                 )
