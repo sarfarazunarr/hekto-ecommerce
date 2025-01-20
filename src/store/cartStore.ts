@@ -18,7 +18,6 @@ interface CartStateI {
 
 const useCartStore = create<CartStateI>()((set) => ({
     cart: [],
-    totalCartAmount: 0,
     addToCart: (item) => set((state) => ({ cart: [...state.cart, item] })),
     removeFromCart: (itemId) => set((state) => ({ cart: state.cart.filter((item) => item._id !== itemId) })),
     clearCart: () => set({ cart: [] }),

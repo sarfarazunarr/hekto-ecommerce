@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react'
 
 
 
-const ShopGrid = () => {
+const Category = ({params}: {params: {slug: string}}) => {
   const [products, setProducts] = useState<ProductType[]>();
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ const ShopGrid = () => {
     setLoading(true)
     try {
       
-      const query = `*[_type == "product"][0..${itemsPerPage}]{_id, name, description, stockLevel, discountPercentage, price, "image_url": image.asset->url, "slug": slug.current}`;
+      const query = `*[_type == "product" && category == "${params.slug}"][0..${itemsPerPage}]{_id, name, description, stockLevel, discountPercentage, price, "image_url": image.asset->url, "slug": slug.current}`;
       const product = await client.fetch(query);
       setProducts(product);
       setLoading(false)
@@ -33,7 +33,7 @@ const ShopGrid = () => {
   }, [itemsPerPage]);
   return (
     <>
-      <MainHeader title='Shop Grid Default' prev='Home . Pages . ' current='Shop Grid Default' />
+      <MainHeader title={`Browse ${params.slug} category`} prev='Home . Pages . ' current={`Category . ${params.slug}`} />
       <StoreDatahandler itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} />
       <div className="px-5 md:px-10 lg:px-40 w-full py-10">
         {loading && (
@@ -53,4 +53,4 @@ const ShopGrid = () => {
   )
 }
 
-export default ShopGrid
+export default Category;

@@ -13,6 +13,7 @@ const Sidebar = () => {
 
     const [products, setProducts] = useState<ProductType[]>();
     const [category, setCategory] = useState('');
+    const [stock, setStock] = useState('instock');
     const [offer, setOffer] = useState(0);
     const [price, setPrice] = useState(0);
     const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -21,7 +22,7 @@ const Sidebar = () => {
     const getData = async () => {
         setLoading(true)
         try {
-            const query = `*[_type == "product"${category ? ` && category == "${category}"` : ''}${offer > 0 ? ` && discountPercentage <= ${offer}` : ''}${price > 0 ? ` && price <= '${price}'` : ''}][0..${itemsPerPage}]{_id, name, description, stockLevel, discountPercentage, price, "image_url": image.asset->url, "slug": slug.current}`;
+            const query = `*[_type == "product"${category ? ` && category == "${category}"` : ''}${offer > 0 ? ` && discountPercentage <= ${offer}` : ''}${price > 0 ? ` && price <= '${price}'` : ''}${stock == "outstock" ? ` && stockLevel <= 0` : 'stockLevel > 0'}][0..${itemsPerPage}]{_id, name, description, stockLevel, discountPercentage, price, "image_url": image.asset->url, "slug": slug.current}`;
             const product = await client.fetch(query);
             setProducts(product);
             setLoading(false)
@@ -33,7 +34,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         getData();
-    }, [category, offer, itemsPerPage]);
+    }, [category, offer, itemsPerPage, stock]);
     return (
         <div>
 
@@ -57,7 +58,7 @@ const Sidebar = () => {
                         <h3 className='font-bold underline pb-2 font-josefin-sans text-offBlue text-xl'>Categories</h3>
                         <div className='flex flex-col gap-1'>
                             <select value={category} className='px-3 mr-2 py-2 rounded-sm border border-gray-300 text-black placeholder:text-gray-200' onChange={(e) => setCategory(e.target.value)}>
-                                <option defaultValue={""} selected disabled>Select Category</option>
+                                <option defaultValue={""} disabled>Select Category</option>
                                 <option value={"Chair"}>Chair</option>
                                 <option value={"Sofa"}>Sofa</option>
                             </select>
@@ -73,6 +74,15 @@ const Sidebar = () => {
                                 <option value={15}>15%</option>
                                 <option value={20}>20%</option>
                                 <option value={25}>25%</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className='flex flex-col gap-3 py-2'>
+                        <h3 className='font-bold underline pb-2 font-josefin-sans text-offBlue text-xl'>Stock Availability</h3>
+                        <div className='flex flex-col gap-1'>
+                            <select value={stock} className='px-3 mr-2 py-2 rounded-sm border border-gray-300 text-black placeholder:text-gray-200' onChange={(e) => setStock(e.target.value)}>
+                                <option value={"instock"}>In Stock</option>
+                                <option value={"outstock"}>Out of Stock</option>
                             </select>
                         </div>
                     </div>
