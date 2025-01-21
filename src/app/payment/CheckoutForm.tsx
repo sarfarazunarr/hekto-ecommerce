@@ -6,7 +6,7 @@ import { FaGooglePay, FaStripe } from 'react-icons/fa';
 import { TbBuildingBank, TbGiftCard } from 'react-icons/tb';
 import { BsFillCreditCard2FrontFill } from 'react-icons/bs';
 import PaymentCard from './PaymentCard';
-import useCartStore, { calculateAmount, CartProduct } from '@/store/cartStore';
+import useCartStore, { calculateAmount } from '@/store/cartStore';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import useUser from '@/store/userStore';
