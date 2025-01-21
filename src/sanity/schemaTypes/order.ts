@@ -34,7 +34,7 @@ const order = defineField({
     {
       name: 'shippingId',
       type: 'string',
-      title: 'Is Featured Product',
+      title: 'ShippingId',
     },
     {
       name: 'status',

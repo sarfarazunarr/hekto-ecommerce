@@ -3,8 +3,10 @@ import MainHeader from '@/components/MainHeader'
 import Image from 'next/image'
 import React from 'react'
 import { GiCheckMark } from 'react-icons/gi'
+import OrderData from './OrderData'
 
 const OrderCompleted = () => {
+    
     return (
         <>
         <div className='w-full relative'>
@@ -18,6 +20,7 @@ const OrderCompleted = () => {
                     <p className='text-[#8D92A7] font-lato text-center'>Thank you for your order! Your order is being processed and will be completed within 3-6
                         hours. You will receive an email confirmation when your order is completed.
                     </p>
+                    <OrderData />
                     <button className='bg-pink rounded-md font-josefin-sans px-8 text-white py-3'>Continue Shipping</button>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+import { SanityImageSource } from "@sanity/image-url/lib/types/types"
 import CategoryProduct from "./CategoryProduct"
 import PRDesign1 from "./PRDesign1"
 import PRDesign2 from "./PRDesign2"
@@ -8,6 +9,7 @@ export interface ProductType{
     _id: string,
     name: string,
     description: string,
+    image?: SanityImageSource,
     image_url: string,
     stockLevel: string,
     price: number,

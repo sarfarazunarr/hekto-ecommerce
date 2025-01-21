@@ -1,32 +1,23 @@
-import { client } from "@/sanity/lib/client";
+import { authenticate } from "@/middleware/authenticate";
 import { CartProduct } from "@/store/cartStore";
 import { NextRequest, NextResponse } from "next/server";
+import { SanityServerClient } from "../sampledata/utils";
 
-export async function POST(req: NextRequest){
+export async function POST(req: NextRequest) {
     try {
-        const data = await req.json();
-        const userSchema = {
-            _type: "user",
-            first_name: data.first_name,
-            last_name: data.last_name,
-            email: data.email,
-            mobileNumber: data.mobileNumber,
-            address: {
-                address1: data.address,
-                address2: data.address2,
-                city: data.city,
-                postal_code: data.postal_code,
-                country: data.country
-            },
-            password: data.password
+        const { decoded } = await authenticate(req);
+        if (!decoded) {
+            return NextResponse.json({ message: "Please login to continue" }, { status: 401 })
         }
-        const createUser = await client.create(userSchema);
-        console.log('User Created with id '+ createUser._id);
-
-        const newproducts: {product: string, quantity: number, amount: number}[] = [];
+        const data = await req.json();
+        const newproducts: { product: { _type: string, _ref: string, _key: string }, quantity: number, amount: number }[] = [];
         await data.products.map((product: CartProduct) => {
             const pr = {
-                product: product._id,
+                product: {
+                    "_key": `pr-${product._id}`,
+                    "_type": "reference",
+                    "_ref": product._id
+                },
                 quantity: product.quantity,
                 amount: product.totalAmount
             };
@@ -36,17 +27,41 @@ export async function POST(req: NextRequest){
         const orderSchema = {
             _type: "order",
             products: newproducts,
-            customer: createUser._id,
+            customer: {
+                _type: "reference",
+                _ref: decoded.id,
+            },
             totalAmount: data.totalAmount,
             payment_method: data.pyament_method,
             status: "Pending",
-            shippingId: Math.random()*10000
+            shippingId: String("SD-" + Math.round(Math.random() * 10000))
         }
-        const createOrder = await client.create(orderSchema);
-        console.log(`User id ${createUser._id} orderId ${createOrder._id}`);
-        return NextResponse.json({message: "Order Placed", type: "success", userid: createUser._id, id: createOrder._id}, {status: 201});
+        const createOrder = await SanityServerClient.create(orderSchema);
+        console.log(`orderId ${createOrder._id}`);
+        return NextResponse.json({ message: "Order Placed", type: "success", id: createOrder._id, shippingId: createOrder.shippingId }, { status: 201 });
     } catch (error) {
         console.log(error);
-        return NextResponse.json({message: error || "Failed to place order!"}, {status: 500})
+        return NextResponse.json({ message: error || "Failed to place order!" }, { status: 500 })
+    }
+}
+
+export async function GET(req: NextRequest) {
+    try {
+        const orderId = req.nextUrl.searchParams.get('order');
+        if (orderId) {
+            const result = await SanityServerClient.fetch(`*[_type == "order" && _id == "${orderId}"]`);
+            if (!result) {
+                return NextResponse.json({ message: "Invalid Order Id" }, { status: 400 });
+            }
+            return NextResponse.json({ data: result }, { status: 200 })
+        }
+        const { decoded } = await authenticate(req);
+        if(!decoded?.id){
+            return NextResponse.json({message: "Unauthorized"}, {status: 401})
+        }
+        const result = await SanityServerClient.fetch(`*[_type == "order" && customer._ref == "${decoded.id}"]`);
+        return NextResponse.json({data: result}, {status: 200})
+    } catch (error) {
+        return NextResponse.json({message: "Failed to load order data", error}, {status: 500})
     }
 }

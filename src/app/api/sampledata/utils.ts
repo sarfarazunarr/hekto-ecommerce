@@ -1,7 +1,7 @@
 import { createClient } from '@sanity/client';
 import axios from 'axios';
 
-const client = createClient({
+export const SanityServerClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   token: process.env.SANITY_API_TOKEN,
@@ -14,7 +14,7 @@ async function uploadImageToSanity(imageUrl:string) {
     console.log(`Uploading Image : ${imageUrl}`);
     const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
     const buffer = Buffer.from(response.data);
-    const asset = await client.assets.upload('image', buffer, {
+    const asset = await SanityServerClient.assets.upload('image', buffer, {
       filename: imageUrl.split('/').pop(),
     });
     console.log(`Image Uploaded Successfully : ${asset._id}`);
@@ -63,7 +63,7 @@ export async function importSampleData() {
         };
   
         console.log(`Uploading ${sanityItem.category} - ${sanityItem.name} to Sanity !`);
-        const result = await client.create(sanityItem);
+        const result = await SanityServerClient.create(sanityItem);
         console.log(`Uploaded Successfully: ${result._id}`);
         console.log("----------------------------------------------------------")
         console.log("\n\n")

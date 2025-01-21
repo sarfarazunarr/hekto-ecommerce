@@ -61,18 +61,6 @@ const CartPage = () => {
                                 <Link href={"/payment"}><button  className='bg-green-500 rounded-md text-white w-full py-3'>Proceed to Checkout</button></Link>
                             </div>
                         </div>
-                        <div className='flex flex-col md:col-span-2 lg:col-span-2'>
-                            <h2 className='text-2xl lg:text-xl  font-bold text-navyBlue text-center py-5'>Checkout</h2>
-                            <div className='bg-[#F4F4FC] rounded-sm p-4 flex flex-col gap-y-8'>
-                                <input type="text" className='bg-transparent text-gray-700 placeholder:text-[#C5CBE3] border-b border-b-[#C5CBE3] outline-none pb-2' placeholder='Bangladesh' />
-                                <input type="text" className='bg-transparent text-gray-700 placeholder:text-[#C5CBE3]  border-b border-b-[#C5CBE3] outline-none pb-2' placeholder='Mirapur Dhaka, 1200 ' />
-                                <input type="text" className='bg-transparent text-gray-700 placeholder:text-[#C5CBE3]  border-b border-b-[#C5CBE3] outline-none  pb-2' placeholder='Postal Code' />
-                                <div className='flex justify-start gap-1 py-6'>
-                                    <button className='bg-pink rounded-sm font-josefin-sans px-8 text-white py-3'>Calculate Shipping</button>
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

@@ -20,7 +20,6 @@ const Navbar = () => {
         {/* Menu */}
         <div className='hidden md:flex col-span-2 justify-start gap-4 items-center'>
           <Link href={"/"} className='font-lato text-offBlue hover:underline hover:text-pink'>Home</Link>
-          <Link href={"/shop/grid"} className='font-lato text-offBlue hover:underline hover:text-pink'>Products</Link>
           <Link href={"/blog"} className='font-lato text-offBlue hover:underline hover:text-pink'>Blog</Link>
           <Link href={"/shop"} className='font-lato text-offBlue hover:underline hover:text-pink'>Shop</Link>
           <Link href={"/about"} className='font-lato text-offBlue hover:underline hover:text-pink'>About</Link>
@@ -44,7 +43,6 @@ const Navbar = () => {
             <button className='bg-pink w-full h-full flex justify-center items-center'  onClick={() => router.push(`/shop/list?search=${search}`)} disabled={search.length <= 1}><FiSearch size={20} color='white' /></button>
           </div>
           <Link href={"/"} className='font-lato text-white hover:underline hover:text-pink'>Home</Link>
-          <Link href={"/shop/grid"} className='font-lato text-white hover:underline hover:text-pink'>Products</Link>
           <Link href={"/blog"} className='font-lato text-white hover:underline hover:text-pink'>Blog</Link>
           <Link href={"/shop"} className='font-lato text-white hover:underline hover:text-pink'>Shop</Link>
           <Link href={"/about"} className='font-lato text-white hover:underline hover:text-pink'>About</Link>
