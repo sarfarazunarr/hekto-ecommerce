@@ -15,7 +15,7 @@ const CartItem = ({data}: {data: CartProduct}) => {
                 <JustItem data={data} />
             </td>
             <td className='font-semibold text-navyBlue text-center font-josefin-sans'>${data.subPrice}</td>
-            <td className='pl-10'>
+            <td className='pl-10 w-24'>
                     <input type="number" className='bg-gray-200 text-gray-500 border-none outline-none text-center font-josefin-sans font-normal ' min={1} value={qty} onChange={(e) => setQty(Number.parseInt(e.target.value))} />
             </td>
             <td className='font-semibold text-navyBlue text-center font-josefin-sans'>${data.totalAmount}</td>

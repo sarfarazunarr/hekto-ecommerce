@@ -9,7 +9,7 @@ import UseronTop from './UseronTop'
 const Topbar = () => {
     return (
         <div className='w-full px-5 lg:px-40 h-auto py-2 md:py-0 md:h-11 flex flex-col md:flex-row items-center justify-between bg-purple gap-4 md:gap-0'>
-            <div className="flex justify-start items-center gap-5">
+            <div className="justify-start items-center gap-5 md:flex hidden">
                 <div className='flex justify-start gap-2 items-center'>
                     <MdOutlineMail className='text-white' />
                     <p className='text-white font-semibold font-josefin-sans'>sarfarazunarr@gmail.com</p>

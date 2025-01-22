@@ -14,7 +14,7 @@ const UseronTop = () => {
     }, [user]);
   return (
     <>
-        {!isActive || user === null && <Link href={"/login"} className='bg-transparent text-white border-none outline-none font-semibold font-josefin-sans flex items-center gap-1'>Account <BiUser color={'white'} /></Link>}
+        {user === null && <Link href={"/login"} className='bg-transparent text-white border-none outline-none font-semibold font-josefin-sans flex items-center gap-1'>Account <BiUser color={'white'} /></Link>}
         {user !== null && <Link href={"/profile"} className='bg-transparent text-white border-none outline-none font-semibold font-josefin-sans flex items-center gap-1'>Hi {user.first_name} - Profile</Link>}
     </>
   )

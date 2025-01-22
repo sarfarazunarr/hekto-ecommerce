@@ -46,7 +46,7 @@ const OrderData = () => {
     console.log(orderdata);
     return (
         <>
-            {orderdata && <div className='w-full grid grid-cols-2 gap-5'>
+            {orderdata && <div className='w-full grid md:grid-cols-2 grid-cols-1 gap-5'>
                 <div className='flex flex-col justify-start items-start text-black text-sm bg-slate-100 p-5 rounded-md'>
                     <p>Order Id: <span className='font-semibold'> {orderdata._id} </span></p>
                     <p>Shipping Id: <span className='font-semibold'> {orderdata.shippingId} </span></p>
