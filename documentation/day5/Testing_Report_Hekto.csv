@@ -1,0 +1,12 @@
+Test Case ID,Test Case Description,Test Steps,Expected Result,Actual Result,Status,Severity Level,Assigned To,Remarks
+TC001,Validate product listing page,Open Shop / Category page > Verify products,Products displayed correctly,Products displayed correctly,Passed,Low,-,No issues found
+TC002,Product Page,Select a product > Open its URL,Product Should be displayed perfectly with related products,Product Page displayed & Related Products also,Passed,Medium,-,No issues found
+TC003,Check cart functionality,Add product to cart > Verify cart contents,Cart updates with added product,Cart updates as expected But Quantity is not updatin,Passed,Medium,-,Issue Resolved
+TC004,Ensure responsiveness on mobile,Resize browser window > Check layout,Layout adjusts properly to screen size,Responsive layout working as intended,Passed,Medium,-,Test successful
+TC005,Loading UI when loading,Change Parameters in Filters,Page should show loader ,Page showed loader and then updated result,Passed,Medium,-,Worked
+TC006,User Should Login & See Profile,Login Page > Enter Credentials > Profile Page,User should see profile page and can update details,Missing Profile Page,Failed,Medium,-,Will Be Resolved
+TC007,Placing Order,View Cart > Checkout > Place Order,User should view cart & Place Order,User added products to Cart & Easily placed order & Some error from sanity,Failed,High,-,Will Be Resolved
+TC008,Filteration,Shop Page > Filters || Shop Page > Pagination,User should select number of results and filters,User is able to select number of results and apply filters,Passed,Low,-,Working
+TC009,Search Functionality,Click on Search Bar > Enter Query > Search,User Should get desired search results,User get results from sanity api ,Passed,Low,-,Working
+TC010,Cross Browser Check,Open Edge > Visit URL > Check,User should be able to browse website effeciently,User is able to visit website,Passed,High,,Working
+TC011,Input Validation,Enter data in input > Pass Valid Date > Fail Invalid Data,User should be prompted if any input is remained or has invalid data,User is not prompted with invalid data or lefting field empty,Failed,High,,Will Be Resolved
